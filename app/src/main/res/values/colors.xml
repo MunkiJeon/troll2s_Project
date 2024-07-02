@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    //화이트 모드
-    <color name="text_W_mode">#917D79</color>
-    <color name="back_W_mode">#F7DDD8</color>
-    <color name="box_W_mode">#BCD6D7</color>
-    //다크 모드
-    <color name="text_D_mode">#FAE9D3</color>
-    <color name="back_D_mode">#94A0BE</color>
-    <color name="box_D_mode">#FBC9CB</color>
+    <color name="color_title">#917D79</color>
+    <color name="color_subtitle">#94A0BE</color>
+    <color name="color_body">#F7DDD8</color>
+    <color name="color_background">#FAE9D3</color>
+    <color name="color_button">#FBC9CB</color>
+    <color name="color_button_hl">#FBC9CB</color>  <!--TODO-->
+    <color name="color_box">#BCD6D7</color>
+
+
+    <!--TODO-->
+    <color name="color_title_dark">#917D79</color>
+    <color name="color_subtitle_dark">#94A0BE</color>
+    <color name="color_body_dark">#F7DDD8</color>
+    <color name="color_background_dark">#FAE9D3</color>
+    <color name="color_button_dark">#FBC9CB</color>
+    <color name="color_button_dark_hl">#FBC9CB</color>  <!--TODO-->
+    <color name="color_box_dark">#BCD6D7</color>
 </resources>

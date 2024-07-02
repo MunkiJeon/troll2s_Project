@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TITLE FONT SIZE -->
+    <style name="title_text">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorTitleText</item>
+    </style><!-- SUBTITLE FONT SIZE -->
+    <style name="subtitle_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorSubtitleText</item>
+    </style>
+    <!-- BODY FONT SIZE -->
+    <style name="body_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?attr/colorBodyText</item>
+    </style>
+
+    <!-- BUTTON -->
+    <style name="button" parent="@android:style/Widget.Button">
+        <item name="android:background">?attr/colorButton</item>
+    </style>
+
+</resources>
