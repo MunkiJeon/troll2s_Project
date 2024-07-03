@@ -1,21 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Trolls.Day" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Trolls.Day" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorTitleText" type="color">@color/color_title</item>
         <item name="colorSubtitleText" type="color">@color/color_subtitle</item>
         <item name="colorBodyText" type="color">@color/color_body</item>
         <item name="android:windowBackground">@color/color_background</item>
 
-        <item name="android:buttonStyle">@style/button</item>
+        <item name="colorButton">@color/color_button</item>
+
+        <item name="buttonStyle">@style/custom_button</item>
         <item name="colorBox">@color/color_box</item>
     </style>
 
-    <style name="Base.Theme.Trolls.Night" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Trolls.Night" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorTitleText" type="color">@color/color_title_dark</item>
         <item name="colorSubtitleText" type="color">@color/color_subtitle_dark</item>
         <item name="colorBodyText" type="color">@color/color_body_dark</item>
         <item name="android:windowBackground">@color/color_background_dark</item>
-        <item name="colorButtonNormal">@color/color_button_dark</item>
+
+        <item name="android:buttonStyle">@style/custom_button</item>
         <item name="colorBox">@color/color_box_dark</item>
     </style>
 </resources>

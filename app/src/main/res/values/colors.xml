@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="color_title">#917D79</color>
     <color name="color_subtitle">#94A0BE</color>
     <color name="color_body">#F7DDD8</color>
@@ -7,6 +8,8 @@
     <color name="color_button">#FBC9CB</color>
     <color name="color_button_hl">#FBC9CB</color>  <!--TODO-->
     <color name="color_box">#BCD6D7</color>
+
+    <color name="test">#F00000</color>
 
 
     <!--TODO-->
