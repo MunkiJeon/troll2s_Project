@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background">#FEFFFE</color>
+    <color name="button">#6042F8</color>
+    <color name="text_default">#2E2D2C</color>
+    <color name="box">#8F95F9</color>
+    <color name="text_solid">#FEFFFE</color>    <!--TODO-->
 
-    <color name="color_title">#917D79</color>
-    <color name="color_subtitle">#94A0BE</color>
-    <color name="color_body">#F7DDD8</color>
-    <color name="color_background">#FAE9D3</color>
-    <color name="color_button">#FBC9CB</color>
-    <color name="color_button_hl">#FBC9CB</color>  <!--TODO-->
-    <color name="color_box">#BCD6D7</color>
-
-    <color name="test">#F00000</color>
-
-
-    <!--TODO-->
-    <color name="color_title_dark">#917D79</color>
-    <color name="color_subtitle_dark">#94A0BE</color>
-    <color name="color_body_dark">#F7DDD8</color>
-    <color name="color_background_dark">#FAE9D3</color>
-    <color name="color_button_dark">#FBC9CB</color>
-    <color name="color_button_dark_hl">#FBC9CB</color>  <!--TODO-->
-    <color name="color_box_dark">#BCD6D7</color>
+    <color name="background_dark">#101012</color>
+    <color name="button_dark">#26272E</color>
+    <color name="text_default_dark">#FEFEFE</color>
+    <color name="box_dark">#414767</color>
+    <color name="text_solid_dark">#FEFEFE</color>
 </resources>

@@ -1,33 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- TITLE FONT SIZE -->
-    <style name="title_text">
-        <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorTitleText</item>
-    </style><!-- SUBTITLE FONT SIZE -->
-    <style name="subtitle_text">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorSubtitleText</item>
-    </style>
-    <!-- BODY FONT SIZE -->
-    <style name="body_text">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">?attr/colorBodyText</item>
-    </style>
 
     <!-- BUTTON -->
     <!-- https://stackoverflow.com/questions/18507351/how-to-create-custom-button-in-android-using-xml-styles -->
-    <style name="custom_button" parent="android:Widget.Button">
+    <style name="button_light" parent="android:Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
-        <item name="android:textColor">@color/color_body</item>
+        <item name="android:textColor">@color/text_solid</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/button_shape</item>
         <item name="android:paddingHorizontal">15dp</item>
         <item name="android:paddingVertical">4dp</item>
-
+    </style>
+    <style name="button_dark" parent="android:Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/text_solid_dark</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:paddingHorizontal">15dp</item>
+        <item name="android:paddingVertical">4dp</item>
     </style>
 
 </resources>
