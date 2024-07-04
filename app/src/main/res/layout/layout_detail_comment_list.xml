@@ -6,7 +6,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="12dp">
+    android:layout_margin="12dp"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/layout_comment_list_tv_nickname"
@@ -14,15 +15,13 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:text="nickname"
-        android:textColor="@color/text_default"/>
+        tools:text="nickname"/>
 
     <TextView
         android:id="@+id/layout_comment_list_tv_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:text="나는 김밥 나는 김밥"
-        android:textColor="@color/text_default"/>
+        tools:text="나는 김밥 나는 김밥"/>
 
 </LinearLayout>
