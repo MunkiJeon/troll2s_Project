@@ -1,16 +1,21 @@
 package com.example.trolls
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet.Constraint
+import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Locale
+
 
 class OptionActivity : AppCompatActivity() {
     private lateinit var languageBox: ImageButton
@@ -35,6 +40,8 @@ class OptionActivity : AppCompatActivity() {
     private lateinit var fontABtn: Button
     private lateinit var fontBBtn: Button
 
+    private lateinit var configuration: Configuration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,6 +51,8 @@ class OptionActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        configuration  = Configuration()
 
         languageBox = findViewById(R.id.change_language_bt)
         themeBox = findViewById(R.id.change_theme_bt)
@@ -72,8 +81,6 @@ class OptionActivity : AppCompatActivity() {
 
         setBoxClickListener()
         setDetailBoxClickListener()
-
-
     }
 
     private fun setBoxClickListener() {
@@ -116,13 +123,24 @@ class OptionActivity : AppCompatActivity() {
                 fontBox.animate().setDuration(200).rotation(180f)
             }
         }
+
+        //TODO: Add this to MainActivity.onCreate
+        val appLocale = LocaleListCompat.forLanguageTags("ko")
+        AppCompatDelegate.setApplicationLocales(appLocale)
     }
+
     private fun setDetailBoxClickListener() {
         languageKoreanBtn.setOnClickListener {
+            Log.d("Option", "Click languageKoreanBtn")
 
+            val appLocale = LocaleListCompat.forLanguageTags("ko")
+            AppCompatDelegate.setApplicationLocales(appLocale)
         }
         languageEnglishBtn.setOnClickListener {
+            Log.d("Option", "Click languageEnglishBtn")
 
+            val appLocale = LocaleListCompat.forLanguageTags("en")
+            AppCompatDelegate.setApplicationLocales(appLocale)
         }
 
         themeLightBtn.setOnClickListener {

@@ -4,6 +4,5 @@
     <attr name="colorButton" format="color"/>
     <attr name="colorBox" format="color"/>
 
-    <attr name="colorTextInBox" type="color"/>
     <attr name="colorDivider" format="color"/>
 </resources>
