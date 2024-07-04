@@ -62,6 +62,7 @@ class DetailActivity : AppCompatActivity() {
         setDataToView(detailProfileNickname, post.writerUser.nickname)
         setDataToView(detailIvPostImg, post.imageResource)
         setDataToView(detailTvContent, post.content)
+        ㄹ
     }
 
     /**
