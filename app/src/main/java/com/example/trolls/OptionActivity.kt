@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +34,6 @@ class OptionActivity : AppCompatActivity() {
 
     private lateinit var fontABtn: Button
     private lateinit var fontBBtn: Button
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +72,8 @@ class OptionActivity : AppCompatActivity() {
 
         setBoxClickListener()
         setDetailBoxClickListener()
+
+
     }
 
     private fun setBoxClickListener() {
