@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="colorTextInBox" type="color"/>
     <attr name="colorButton" format="color"/>
     <attr name="colorBox" format="color"/>
     <attr name="colorTextInBox" type="color"/>
+
+    <attr name="colorTextInBox" type="color"/>
+    <attr name="colorDivider" format="color"/>
 </resources>

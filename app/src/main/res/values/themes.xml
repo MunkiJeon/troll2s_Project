@@ -8,6 +8,7 @@
         <item name="colorButton">@color/button</item>
         <item name="colorBox">@color/box</item>
         <item name="colorTextInBox">@color/text_solid</item>
+        <item name="colorDivider">@color/divider</item>
     </style>
 
     <style name="Base.Theme.Trolls.Night" parent="Theme.AppCompat.DayNight.NoActionBar">
@@ -18,5 +19,6 @@
         <item name="colorButton">@color/button_dark</item>
         <item name="colorBox">@color/box_dark</item>
         <item name="colorTextInBox">@color/text_solid_dark</item>
+        <item name="colorDivider">@color/divider_dark</item>
     </style>
 </resources>
