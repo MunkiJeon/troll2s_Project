@@ -3,5 +3,6 @@ data class User(val id: String,
                 val name: String,
                 var nickname: String,
                 val myPost: MutableList<Post> = mutableListOf(),
-                val myLikes: MutableList<Like> = mutableListOf()
+                val myLikes: MutableList<Like> = mutableListOf(),
+                val profileImageResource: Int
 )
