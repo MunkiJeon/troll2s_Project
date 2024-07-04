@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- BUTTON -->
     <!-- https://stackoverflow.com/questions/18507351/how-to-create-custom-button-in-android-using-xml-styles -->
     <style name="button_light" parent="android:Widget.Button">
@@ -11,6 +10,18 @@
         <item name="android:background">@drawable/button_shape</item>
         <item name="android:paddingHorizontal">15dp</item>
         <item name="android:paddingVertical">4dp</item>
+    </style>
+
+    <!-- FONT SIZE -->
+    <style name="font_size_normal">
+        <item name="sizeTitleText">32sp</item>
+        <item name="sizeSubtitleText">22sp</item>
+        <item name="sizeBodyText">18sp</item>
+    </style>
+    <style name="font_size_large">
+        <item name="sizeTitleText">36sp</item>
+        <item name="sizeSubtitleText">24sp</item>
+        <item name="sizeBodyText">20sp</item>
     </style>
 
 </resources>

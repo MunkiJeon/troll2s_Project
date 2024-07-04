@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         android:text="@string/test_text"
-        android:textSize="40sp"
+        android:textSize="?attr/sizeTitleText"
         android:textStyle="bold"
         />
 

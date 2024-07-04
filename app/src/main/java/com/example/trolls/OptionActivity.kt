@@ -3,6 +3,7 @@ package com.example.trolls
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.fonts.Font
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,7 +19,7 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.Locale
 
 
-class OptionActivity : AppCompatActivity() {
+class OptionActivity : BaseActivity() {
     private lateinit var languageBox: ImageButton
     private lateinit var themeBox: ImageButton
     private lateinit var fontSizeBox: ImageButton
@@ -153,10 +154,20 @@ class OptionActivity : AppCompatActivity() {
         }
 
         fontSizeNormalBtn.setOnClickListener {
+            val settings = getSharedPreferences("preference", Context.MODE_PRIVATE)
+            settings.edit().apply {
+                putString("font_size", FontSize.Normal.name)
+            }.apply()
 
+            recreate()
         }
         fontSizeLargeBtn.setOnClickListener {
+            val settings = getSharedPreferences("preference", Context.MODE_PRIVATE)
+            settings.edit().apply {
+                putString("font_size", FontSize.Large.name)
+            }.apply()
 
+            recreate()
         }
 
         fontABtn.setOnClickListener {

@@ -3,6 +3,9 @@
     <attr name="colorTextInBox" type="color"/>
     <attr name="colorButton" format="color"/>
     <attr name="colorBox" format="color"/>
-
     <attr name="colorDivider" format="color"/>
+
+    <attr name="sizeTitleText" format="dimension" />
+    <attr name="sizeSubtitleText" format="dimension" />
+    <attr name="sizeBodyText" format="dimension" />
 </resources>
