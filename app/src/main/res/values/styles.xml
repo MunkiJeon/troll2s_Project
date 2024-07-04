@@ -12,16 +12,4 @@
         <item name="android:paddingVertical">4dp</item>
     </style>
 
-    <!-- FONT SIZE -->
-    <style name="font_size_normal">
-        <item name="sizeTitleText">32sp</item>
-        <item name="sizeSubtitleText">22sp</item>
-        <item name="sizeBodyText">18sp</item>
-    </style>
-    <style name="font_size_large">
-        <item name="sizeTitleText">36sp</item>
-        <item name="sizeSubtitleText">24sp</item>
-        <item name="sizeBodyText">20sp</item>
-    </style>
-
 </resources>
