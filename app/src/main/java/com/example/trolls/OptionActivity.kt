@@ -1,6 +1,7 @@
 package com.example.trolls
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -125,8 +126,8 @@ class OptionActivity : AppCompatActivity() {
         }
 
         //TODO: Add this to MainActivity.onCreate
-        val appLocale = LocaleListCompat.forLanguageTags("ko")
-        AppCompatDelegate.setApplicationLocales(appLocale)
+        //val appLocale = LocaleListCompat.forLanguageTags("ko")
+        //AppCompatDelegate.setApplicationLocales(appLocale)
     }
 
     private fun setDetailBoxClickListener() {
@@ -144,10 +145,11 @@ class OptionActivity : AppCompatActivity() {
         }
 
         themeLightBtn.setOnClickListener {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         }
         themeDarkBtn.setOnClickListener {
-
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
 
         fontSizeNormalBtn.setOnClickListener {
@@ -162,6 +164,10 @@ class OptionActivity : AppCompatActivity() {
         }
         fontBBtn.setOnClickListener {
 
+        }
+        findViewById<Button>(R.id.test_btn).setOnClickListener {
+            val intent = Intent(this, TestActivity::class.java)
+            startActivity(intent)
         }
     }
 }
