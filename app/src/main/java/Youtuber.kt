@@ -7,8 +7,10 @@ import kotlinx.parcelize.Parcelize
 class Youtuber(
     override val id: String = "empty id",
     override var password: String = "empty password",
-    override val name: String = "empty name",
+    override var name: String = "empty name",
     override var nickname: String = "empty nickname",
+    override var intro: String = "",
     override val myPosts: MutableList<Post> =  mutableListOf(),
     override val myLikes : MutableList<Like> = mutableListOf(),
-    var profileIcon: Int = -1) : User(id, password, name, nickname, myPosts, myLikes), Parcelable
+    override var profileImageResource: Int = 0,
+    var profileIcon: Int = -1) : User(id, password, name, nickname, intro = "", myPosts, myLikes, profileImageResource), Parcelable

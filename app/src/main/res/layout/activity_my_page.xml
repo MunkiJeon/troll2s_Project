@@ -5,18 +5,33 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyPage"
+    tools:context=".MyPageActivity"
     >
 
     <Button
-        android:id="@+id/mypage_iv_logo"
+        android:id="@+id/mypage_btn_gomain"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="16dp"
+        android:text="@string/mypage_main"
+        app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_title"
+        app:layout_constraintEnd_toStartOf="@+id/mypage_btn_gosetting"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/mypage_btn_gosetting"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
 
         android:layout_marginTop="8dp"
 
         android:layout_marginEnd="8dp"
-        android:text="메인화면"
+        android:text="@string/option_title"
         app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +45,7 @@
 
         android:textSize="32sp"
         android:textStyle="bold"
-        android:text="마이 페이지"
+        android:text="@string/mypage_title"
 
         android:layout_marginVertical="32dp"
         android:layout_marginHorizontal="16dp"
@@ -69,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
 
-            android:text="아이디"
+            android:text="@string/mypage_myid"
             android:textColor="?attr/colorTextInBox"
             android:textSize="20dp"
 
@@ -84,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="이름"
+            android:text="@string/mypage_myname"
             android:textColor="?attr/colorTextInBox"
             android:textSize="20dp"
 
@@ -98,8 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-
-            android:text="닉네임"
+            android:text="@string/mypage_nickname"
             android:textColor="?attr/colorTextInBox"
 
             android:textSize="20dp"
@@ -113,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="프로필 변경"
+            android:text="@string/mypage_btn_profilechange"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -126,7 +140,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginVertical="16dp"
-        android:text="소개"
+        android:text="@string/mypage_intro_title"
 
         android:textSize="32sp"
         android:textStyle="bold"
@@ -153,9 +167,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@drawable/mypage_box_clear_shp"
+            android:background="@drawable/detail_shp_layout_comment_box_bg"
             android:gravity="top"
-            android:hint="소개말을 입력해 주세요."
+            android:hint="@string/mypage_intro_hint"
             android:maxLength="150"
 
             android:padding="10dp"
@@ -172,7 +186,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginVertical="16dp"
-        android:text="내가 작성한 글"
+        android:text="@string/mypage_mypost"
 
         android:textSize="32sp"
         android:textStyle="bold"
@@ -182,10 +196,11 @@
         app:layout_constraintTop_toBottomOf="@+id/mypage_lo_intro" />
 
     <HorizontalScrollView
-        android:id="@+id/mypage_Lo_mypost"
+        android:id="@+id/mypage_lo_mypost"
         android:layout_width="@+id/mypage_lo_intro"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_marginTop="4dp"
+        android:padding="8dp"
         android:background="?attr/colorBox"
         app:layout_constraintEnd_toEndOf="@+id/mypage_lo_intro"
         app:layout_constraintHorizontal_bias="0.0"
@@ -193,9 +208,11 @@
         app:layout_constraintTop_toBottomOf="@+id/mypage_tv_mypost">
 
         <LinearLayout
+            android:padding="2sp"
+            android:id="@+id/mypage_lo_myposts"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:orientation="horizontal" />
     </HorizontalScrollView>
 
     <TextView
@@ -204,27 +221,30 @@
         android:layout_height="wrap_content"
 
         android:layout_marginVertical="16dp"
-        android:text="내가 좋아요한 글"
+        android:text="@string/mypage_likes"
 
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/mypage_Lo_mypost"
+        app:layout_constraintEnd_toEndOf="@+id/mypage_lo_mypost"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/mypage_Lo_mypost"
-        app:layout_constraintTop_toBottomOf="@+id/mypage_Lo_mypost" />
+        app:layout_constraintStart_toStartOf="@+id/mypage_lo_mypost"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_lo_mypost" />
 
     <HorizontalScrollView
-        android:layout_width="@+id/mypage_Lo_mypost"
-        android:layout_height="100dp"
+        android:layout_width="@+id/mypage_lo_mypost"
+        android:layout_height="120dp"
         android:layout_marginTop="8dp"
+        android:padding="8dp"
         android:background="?attr/colorBox"
         app:layout_constraintEnd_toEndOf="@+id/mypage_lo_intro"
         app:layout_constraintStart_toStartOf="@+id/mypage_tv_mylike"
         app:layout_constraintTop_toBottomOf="@+id/mypage_tv_mylike">
 
         <LinearLayout
+            android:id="@+id/mypage_lo_mylikes"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:padding="2dp"
+            android:orientation="horizontal" />
     </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
