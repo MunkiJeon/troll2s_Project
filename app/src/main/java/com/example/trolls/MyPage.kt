@@ -26,20 +26,21 @@ class MyPage : AppCompatActivity() {
     /**
      * 더미 데이터 정의
      */
-    private var userData = User("jeon", "1234","전문기", "moonki's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image01)
+    private var userData = User("jeon", "1234","전문기", "moonki's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image03)
 
-    var jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image01)
-    var jiwon = User("shin", "1234","신지원", "jiwon's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image01)
-    var moonki = User("jeon", "1234","전문기", "moonki's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image01)
-    var rian = User("kim", "1234","김리안", "rian's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image01)
-    var seungmo = User("seong", "1234","성승모", "seungmo's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image01)
+    var jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image03)
+    var jiwon = User("shin", "1234","신지원", "jiwon's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image03)
+    var moonki = User("jeon", "1234","전문기", "moonki's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image03)
+    var rian = User("kim", "1234","김리안", "rian's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image03)
+    var seungmo = User("seong", "1234","성승모", "seungmo's nickname","hi!!!!hello",mutableListOf(),mutableListOf(),R.drawable.dummy_image03)
 
     val logInedUser = jaeseon
 
-    val post_panni1 = Post(1, R.drawable.dummy_image02, "빠니보틀 제목1","빠니보틀 본문1", jaeseon, mutableListOf(), likes = mutableListOf(Like(jiwon)))
-    val post_panni2 = Post(2, R.drawable.dummy_image02, "빠니보틀 제목2","빠니보틀 본문2", jaeseon, mutableListOf())
-    val post_kwack1 = Post(3, R.drawable.dummy_image01, "곽튜브 제목1","곽튜브 본문2", jaeseon, mutableListOf())
-    val post_kwack2 = Post(4, R.drawable.dummy_image01, "곽튜브 제목2","곽튜브 본문2", jaeseon, mutableListOf())
+    //TODO: type miss match
+    val post_panni1 = Post(1, R.drawable.dummy_image03, "빠니보틀 제목1","빠니보틀 본문1", jaeseon, mutableListOf(), likes = mutableListOf(Like(jiwon)))
+    val post_panni2 = Post(2, R.drawable.dummy_image03, "빠니보틀 제목2","빠니보틀 본문2", jaeseon, mutableListOf())
+    val post_kwack1 = Post(3, R.drawable.dummy_image03, "곽튜브 제목1","곽튜브 본문2", jaeseon, mutableListOf())
+    val post_kwack2 = Post(4, R.drawable.dummy_image03, "곽튜브 제목2","곽튜브 본문2", jaeseon, mutableListOf())
 
 
     val comment1_1 = Comment("댓글입니다1_1", jaeseon)
@@ -86,7 +87,8 @@ class MyPage : AppCompatActivity() {
                 mypage_tv_myname.setText(resultDataId!!.data!!.getStringExtra("NAME") ?: throw Exception("No Name"))
                 mypage_tv_nickname.setText(resultDataId!!.data!!.getStringExtra("NICK") ?: throw Exception("No Nick"))
 
-                userData.id = resultDataId!!.data!!.getStringExtra("ID") ?: throw Exception("No ID")
+
+                //TODO
                 userData.name = resultDataId!!.data!!.getStringExtra("NAME") ?: throw Exception("No Name")
                 userData.nickname = resultDataId!!.data!!.getStringExtra("NICK") ?: throw Exception("No Nickname")
             } else{
@@ -124,9 +126,9 @@ class MyPage : AppCompatActivity() {
         mypage_tv_nickname = findViewById<TextView>(R.id.mypage_tv_nickname)
         // 소개말 설정 부분
         mypage_tv_intro = findViewById<TextView>(R.id.mypage_tv_intro)
-        //내가 작성한 글
+        //TODO: 내가 작성한 글
 
-        //내가 좋아요한 글
+        //TODO: 내가 좋아요한 글
 
         mypage_iv_profilepic.setImageResource(userData.profileImageResource)
         mypage_tv_myid.setText(userData.id)

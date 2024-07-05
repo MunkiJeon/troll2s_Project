@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 open class User(
     open val id: String = "empty user",
     open var password: String = "empty password",
-    open val name: String = "empty name",
+    open var name: String = "empty name",
     open var nickname: String = "empty nickname",
     open var intro :String,
     open val myPosts: MutableList<Post> = mutableListOf(),
