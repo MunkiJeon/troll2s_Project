@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">trolls</string>
 
+
     <!--TODO: 위에 창에서 Open Editor 클릭 후 영문으로 바꿔주기-->
 
 
-  
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -47,7 +48,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-  
+
 
     <string name="option_title">설정</string>
     <string name="change_language">언어 바꾸기</string>
@@ -67,5 +68,5 @@
     <string name="change_font_a">폰트 A</string>
     <string name="change_font_b">폰트 B</string>
 
-  
+
 </resources>
