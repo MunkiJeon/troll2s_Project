@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     val youtubers = mutableListOf<Youtuber>()
     val posts = mutableListOf<Post>()
 
+    //TODO: Intro 추가
     val jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname")
     val jiwon = User("shin", "1234","신지원", "jiwon's nickname")
     val moonki = User("jeon", "1234","전문기", "moonki's nickname")
