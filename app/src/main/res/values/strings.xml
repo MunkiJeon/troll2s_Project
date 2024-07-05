@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">trolls</string>
+
+    <string name="option_title">설정</string>
+    <string name="change_language">언어 바꾸기</string>
+    <string name="change_theme">테마 바꾸기</string>
+    <string name="change_font_size">폰트 크기 바꾸기</string>
+    <string name="change_font">폰트 바꾸기</string>
+
+    <string name="change_language_english" translatable="false">English</string>
+    <string name="change_language_korean" translatable="false">한국어</string>
+
+    <string name="change_theme_light">라이트</string>
+    <string name="change_theme_dark">다크</string>
+
+    <string name="change_font_size_normal">보통</string>
+    <string name="change_font_size_large">크게</string>
+
+    <string name="change_font_a">폰트 A</string>
+    <string name="change_font_b">폰트 B</string>
+
 </resources>
