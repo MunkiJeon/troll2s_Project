@@ -67,6 +67,16 @@
 
     <string name="change_font_a">폰트 A</string>
     <string name="change_font_b">폰트 B</string>
-
-
+    <string name="mypage_title">마이 페이지</string>
+    <string name="mypage_myid">아이디</string>
+    <string name="mypage_myname">이름</string>
+    <string name="mypage_nickname">별명</string>
+    <string name="mypage_btn_profilechange">프로필 변경</string>
+    <string name="mypage_intro_title">소개</string>
+    <string name="mypage_intro_hint">소개말을 작성해 주세요.</string>
+    <string name="mypage_mypost">작성한 글</string>
+    <string name="mypage_likes">좋아요</string>
+    <string name="editpage_tv_optionstitle">변경할 이미지를 선택해 주세요.</string>
+    <string name="mypage_main">메인 화면</string>
+  
 </resources>

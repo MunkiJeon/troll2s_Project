@@ -125,10 +125,9 @@ class MainActivity : AppCompatActivity() {
 
         main_page_btn_my_page.setOnClickListener{
             // 마이페이지로 loginUser 전송
-//            val intent_to_My_page = Intent(this, FadeTestActivity::class.java)
-//            intent_to_My_page.putExtra("loginUser", logInedUser)
-//            startActivity(intent_to_My_page)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            val intent_to_My_page = Intent(this, MyPageActivity::class.java)
+            intent_to_My_page.putExtra("loginUser", logInedUser)
+            startActivity(intent_to_My_page)
         }
 
         val main_page_inner_layout_scroll_youtuber = findViewById<LinearLayout>(R.id.main_page_inner_layout_scroll_youtuber)
