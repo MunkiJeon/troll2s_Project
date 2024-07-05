@@ -8,6 +8,7 @@ open class User(
     open var password: String = "empty password",
     open val name: String = "empty name",
     open var nickname: String = "empty nickname",
+    open var intro :String,
     open val myPosts: MutableList<Post> = mutableListOf(),
     open val myLikes: MutableList<Like> = mutableListOf(),
     open val profileImageResource: Int
