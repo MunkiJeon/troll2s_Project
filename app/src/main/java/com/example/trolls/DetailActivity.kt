@@ -36,13 +36,13 @@ class DetailActivity : AppCompatActivity() {
     val commentLayouts = mutableListOf<View>()
 
     init {
-        user1 = User("test999", "test123", "test", "test1", posts, R.drawable.sample_img1)
-        user2 = User("test999", "test123", "test", "test2", posts, R.drawable.sample_img2)
-        user3 = User("test999", "test123", "test", "test3", posts, R.drawable.sample_img2)
+        user1 = User("test999", "test123", "test", "test1", "",  posts, likes, R.drawable.sample_img1)
+        user2 = User("test999", "test123", "test", "test2", "",  posts, likes, R.drawable.sample_img2)
+        user3 = User("test999", "test123", "test", "test3", "",  posts, likes,  R.drawable.sample_img2)
         loginedUser = user3
 
-        post1 = Post(1, R.drawable.sample_img1, "Title 1", "Content 1", user1, comments, likes)
-        post2 = Post(2, R.drawable.sample_img1, "Title 2", "Content 2", user1, comments, likes)
+        post1 = Post(1, R.drawable.sample_img1, "Title 1", "Content 1", user1, comments = comments, likes = likes)
+        post2 = Post(2, R.drawable.sample_img1, "Title 2", "Content 2", user1, comments = comments, likes = likes)
         posts.add(post1)
         posts.add(post2)
 
