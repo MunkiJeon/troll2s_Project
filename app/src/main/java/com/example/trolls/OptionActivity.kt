@@ -178,10 +178,6 @@ class OptionActivity : AppCompatActivity() {
         fontBBtn.setOnClickListener {
 
         }
-        findViewById<Button>(R.id.test_btn).setOnClickListener {
-            val intent = Intent(this, TestActivity::class.java)
-            startActivity(intent)
-        }
     }
     private fun adjustFontSize(fontSize: FontSize) {
         val configuration= this.resources.configuration

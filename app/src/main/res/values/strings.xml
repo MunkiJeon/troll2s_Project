@@ -19,7 +19,4 @@
     <string name="change_font_a">폰트 A</string>
     <string name="change_font_b">폰트 B</string>
 
-    <string name="to_test_btn">테스토 화면으로</string>
-    <string name="test_text">테스트</string>
-
 </resources>
