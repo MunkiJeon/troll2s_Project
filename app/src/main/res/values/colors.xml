@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#FFFFFF</color>
+
     <color name="background">#FEFFFE</color>
     <color name="button">#6042F8</color>
     <color name="text_default">#2E2D2C</color>
     <color name="box">#8F95F9</color>
     <color name="text_solid">#FEFFFE</color>    <!--TODO-->
-
-    <color name="background_dark">#101012</color>
-    <color name="button_dark">#26272E</color>
-    <color name="text_default_dark">#FEFEFE</color>
-    <color name="box_dark">#414767</color>
-    <color name="text_solid_dark">#FEFEFE</color>
+    <color name="divider">#267D7D7D</color>
 </resources>

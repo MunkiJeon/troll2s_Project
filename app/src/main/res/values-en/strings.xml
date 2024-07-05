@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">trolls</string>
+    <string name="option_title">Option</string>
+    <string name="change_language">Change Language</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="change_font_size">Change Font Size</string>
+    <string name="change_font">Change Font</string>
+    <string name="change_theme_light">Light</string>
+    <string name="change_theme_dark">Dark</string>
+    <string name="change_font_size_normal">Normal</string>
+    <string name="change_font_size_large">Large</string>
+    <string name="change_font_a">Font A</string>
+    <string name="change_font_b">Font B</string>
+</resources>
