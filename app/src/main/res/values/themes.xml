@@ -17,4 +17,9 @@
         <item name="colorButton">@color/button_dark</item>
         <item name="colorBox">@color/box_dark</item>
     </style>
+  <!-- Base application theme. -->
+    <style name="Base.Base.Theme.Trolls.Day" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
 </resources>
