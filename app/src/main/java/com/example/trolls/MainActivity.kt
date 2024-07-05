@@ -5,7 +5,10 @@ import Like
 import Post
 import User
 import Youtuber
+import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +31,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import de.hdodenhof.circleimageview.CircleImageView
+import java.io.ByteArrayOutputStream
+import android.util.Pair
 
 class MainActivity : AppCompatActivity() {
 
@@ -119,9 +124,10 @@ class MainActivity : AppCompatActivity() {
 
         main_page_btn_my_page.setOnClickListener{
             // 마이페이지로 loginUser 전송
-//            val intent_to_My_page = Intent(this, TestMyPageActivity::class.java)
+//            val intent_to_My_page = Intent(this, FadeTestActivity::class.java)
 //            intent_to_My_page.putExtra("loginUser", logInedUser)
 //            startActivity(intent_to_My_page)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
 
         val main_page_inner_layout_scroll_youtuber = findViewById<LinearLayout>(R.id.main_page_inner_layout_scroll_youtuber)
@@ -193,6 +199,11 @@ class MainActivity : AppCompatActivity() {
         main_page_layout_post_image.layoutParams = main_page_layout_post_image_params
 
         val image_view_post = ImageView(this)
+        val ic_comment = ImageView(this)
+        val ic_like = ToggleButton(this)
+        val content = TextView(this)
+
+        image_view_post.transitionName = "iv_main_image"
         val image_view_post_params = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
@@ -201,17 +212,6 @@ class MainActivity : AppCompatActivity() {
         image_view_post.setImageResource(post.imageResource)
         image_view_post.layoutParams = image_view_post_params
         main_page_layout_post_image.addView(image_view_post)
-
-        main_page_layout_post_image.setOnClickListener {
-            
-            // 디테일 페이지로 post 전송(이미지 클릭)
-//            val intent_to_test = Intent(this, TestActivity::class.java)
-//            Toast.makeText(this, post.toString(), Toast.LENGTH_SHORT).show()
-//            intent_to_test.putExtra("post", post)
-//            intent_to_test.putExtra("from", "image")
-//            startActivity(intent_to_test)
-        }
-
 
 
         val main_page_layout_post_icons = LinearLayout(this)
@@ -225,7 +225,8 @@ class MainActivity : AppCompatActivity() {
 
         scaleAnimation.interpolator = boundInterpolator
 
-        val ic_like = ToggleButton(this)
+
+        ic_like.transitionName = "tb_like"
         ic_like.setBackgroundResource(R.drawable.main_page_sel_like)
         for (like in post.likes) {
             if(like.checkedUser.id == logInedUser.id) {
@@ -258,7 +259,8 @@ class MainActivity : AppCompatActivity() {
             compoundButton.startAnimation(scaleAnimation)
         }
 
-        val ic_comment = ImageView(this)
+
+        ic_comment.transitionName = "iv_comment"
         ic_comment.setImageResource(R.drawable.ic_comment)
         ic_comment.layoutParams = LinearLayout.LayoutParams(
             convertDpToPixel(50),
@@ -270,7 +272,17 @@ class MainActivity : AppCompatActivity() {
 //            val intent_to_test = Intent(this, TestActivity::class.java)
 //            intent_to_test.putExtra("post", post)
 //            intent_to_test.putExtra("from", "ic_comment")
-//            startActivity(intent_to_test)
+//            intent_to_test.putExtra("content", post.content)
+
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                Pair.create(image_view_post, "iv_main_image"),
+                Pair.create(ic_like, "tb_like"),
+                Pair.create(ic_comment, "iv_comment"),
+                Pair.create(content, "tv_content"),
+            )
+//            startActivity(intent_to_test, options.toBundle())
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
 
         main_page_layout_post_icons.addView(ic_like)
@@ -285,7 +297,8 @@ class MainActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.MATCH_PARENT
         )
 
-        val content = TextView(this)
+
+        content.transitionName = "tv_content"
         content.layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
@@ -300,10 +313,48 @@ class MainActivity : AppCompatActivity() {
         )
         entire_layout_params.bottomMargin = convertDpToPixel(50)
         entire_layout.layoutParams = entire_layout_params
+
+        main_page_layout_post_image.setOnClickListener {
+
+//             디테일 페이지로 post 전송(이미지 클릭)
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                Pair.create(image_view_post, "iv_main_image"),
+                Pair.create(ic_like, "tb_like"),
+                Pair.create(ic_comment, "iv_comment"),
+                Pair.create(content, "tv_content"),
+            )
+
+
+            // click image
+//            val intent_to_test = Intent(this, TestActivity::class.java)
+//            Toast.makeText(this, post.toString(), Toast.LENGTH_SHORT).show()
+//            intent_to_test.putExtra("post", post)
+//            intent_to_test.putExtra("from", "image")
+//            intent_to_test.putExtra("content", post.content)
+//
+//            startActivity(intent_to_test, options.toBundle())
+            // API version less than 33
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
+            // API version more than 34
+//            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out)
+        }
+
+
+
+
         entire_layout.addView(main_page_layout_post_image)
         entire_layout.addView(main_page_layout_post_icons)
         entire_layout.addView(main_page_layout_post_content)
 
         return entire_layout
+    }
+
+    private fun sendImage(image: Int): ByteArray {
+        val sendBitmap = BitmapFactory.decodeResource(resources, image)
+        val stream = ByteArrayOutputStream()
+        sendBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        return stream.toByteArray()
     }
 }

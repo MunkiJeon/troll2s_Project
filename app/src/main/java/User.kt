@@ -10,5 +10,5 @@ open class User(
     open var nickname: String = "empty nickname",
     open val myPosts: MutableList<Post> = mutableListOf(),
     open val myLikes: MutableList<Like> = mutableListOf(),
-    open val profileImageResource: Int
+    open val profileImageResource: Int = 1
 ) : Parcelable
