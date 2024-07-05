@@ -33,7 +33,6 @@ class DetailActivity : AppCompatActivity() {
     val user3: User
     val loginedUser: User
     lateinit var parentLayout: LinearLayout
-    var index: Int = 0
     val commentLayouts = mutableListOf<View>()
 
     init {
@@ -52,18 +51,18 @@ class DetailActivity : AppCompatActivity() {
         likes.add(like1)
         likes.add(like2)
 
-        val comment1 = Comment(index++, "나는 김밥 나는 김밥", user1)
-        val comment2 = Comment(index++, "댓글 1", user1)
-        val comment3 = Comment(index++, "댓글 2", user1)
-        val comment4 = Comment(index++, "댓글 3", user1)
-        val comment5 = Comment(index++, "댓글 4", user1)
-        val comment6 = Comment(index++, "댓글 5", user1)
-        val comment7 = Comment(index++, "댓글 6", user1)
-        val comment8 = Comment(index++, "댓글 7", user1)
-        val comment9 = Comment(index++, "댓글 8", user1)
-        val comment10 = Comment(index++, "댓글 9", user1)
-        val comment11 = Comment(index++, "댓글 10", user1)
-        val comment12 = Comment(index++, "댓글 11", user1)
+        val comment1 = Comment("나는 김밥 나는 김밥", user1)
+        val comment2 = Comment("댓글 1", user1)
+        val comment3 = Comment("댓글 2", user1)
+        val comment4 = Comment("댓글 3", user1)
+        val comment5 = Comment("댓글 4", user1)
+        val comment6 = Comment("댓글 5", user1)
+        val comment7 = Comment("댓글 6", user1)
+        val comment8 = Comment("댓글 7", user1)
+        val comment9 = Comment("댓글 8", user1)
+        val comment10 = Comment("댓글 9", user1)
+        val comment11 = Comment("댓글 10", user1)
+        val comment12 = Comment("댓글 11", user1)
         comments.apply {
             add(comment1)
             add(comment2)
@@ -179,7 +178,7 @@ class DetailActivity : AppCompatActivity() {
         detailTvCommentSubmitBtn.setOnClickListener {
             if (detailEtCommentBox.text.isNotEmpty()) {
                 val detailLoCommentList = findViewById<LinearLayout>(R.id.detail_lo_comment_list)
-                addCommentLayout(Comment(index++, detailEtCommentBox.text.toString(), loginedUser))
+                addCommentLayout(Comment(detailEtCommentBox.text.toString(), loginedUser))
                 detailEtCommentBox.text = null
 
             } else {
