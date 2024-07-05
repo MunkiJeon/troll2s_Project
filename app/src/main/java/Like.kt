@@ -1,4 +1,7 @@
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
 
-data class Like(val checkedUser: User,
-                val checkedDate: LocalDateTime = LocalDateTime.now())
+@Parcelize
+data class Like(val checkedUser: User = User(),
+                val checkedDate: LocalDateTime = LocalDateTime.now()) : Parcelable
