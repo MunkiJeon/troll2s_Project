@@ -1,8 +1,10 @@
-data class User(val id: String,
-                var password: String,
-                val name: String,
-                var nickname: String,
-                val myPost: MutableList<Post> = mutableListOf(),
-                val myLikes: MutableList<Like> = mutableListOf(),
-                val profileImageResource: Int
+data class User(
+    var id: String,
+    var password: String,
+    var name: String,
+    var nickname: String,
+    var intro :String,
+    val myPost: MutableList<Post> = mutableListOf(),
+    val myLikes: MutableList<Like> = mutableListOf(),
+    val profileImageResource: Int
 )
