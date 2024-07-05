@@ -16,7 +16,7 @@
         android:scaleType="fitXY"/>
 
     <TextView
-        android:id="@+id/layout_bottom_sheet_like_list_tv_nickname"
+        android:id="@+id/detail_comment_list_tv_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="nickname"

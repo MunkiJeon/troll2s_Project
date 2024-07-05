@@ -1,2 +1,5 @@
-data class Comment(val content: String,
-                   val writeUser: User)
+data class Comment(
+    val id: Int,
+    val content: String,
+    val writeUser: User,
+)

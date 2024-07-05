@@ -3,4 +3,5 @@
     <string name="show_all_comment">댓글 모두 보기</string>
     <string name="detail_comment_head_text">댓글</string>
     <string name="bottom_sheet_like_head_text">좋아요</string>
+    <string name="detail_comment_submit_btn">게시</string>
 </resources>
