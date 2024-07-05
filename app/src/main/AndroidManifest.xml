@@ -13,30 +13,14 @@
         android:theme="@style/Base.Theme.Trolls.Font_normal"
         tools:targetApi="31">
         <activity
-            android:name=".EditPage"
-            android:exported="false" />
-
-        <activity
-            android:name=".DetailActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".MyPage"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
+            android:name=".OptionActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
 
         </activity>
     </application>
