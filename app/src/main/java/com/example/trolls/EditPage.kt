@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -63,9 +64,12 @@ class EditPage : AppCompatActivity() {
             insets
         }
         var imgInt = intent.getIntExtra("IMG",0)
-        var editpage_lo_profile = findViewById<ConstraintLayout>(R.id.editpage_lo_profile)
+
+//        var editpage_lo_profile = findViewById<ConstraintLayout>(R.id.editpage_lo_profile)
+        var editpage_lo_profileconstraint = findViewById<ConstraintLayout>(R.id.editpage_lo_profileconstraint)
         var editpage_lo_imgoptions = findViewById<ConstraintLayout>(R.id.editpage_lo_imgoptions)
         var editpage_lo_optionslist = findViewById<GridLayout>(R.id.editpage_lo_optionslist)
+        var editpage_lo_profilescroll = findViewById<ScrollView>(R.id.editpage_lo_profilescroll)
 
         editpage_iv_profilepic = findViewById<ImageView>(R.id.editpage_iv_profilepic)
         editpage_tv_myid = findViewById<TextView>(R.id.editpage_tv_myid)//아이디는 변경 불가
@@ -82,6 +86,7 @@ class EditPage : AppCompatActivity() {
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(90)))
                 .into(editpage_iv_profilepic)
             imgInt = imgNum
+            editpage_lo_profilescroll.fullScroll(ScrollView.FOCUS_UP-70)
             editpage_lo_imgoptions.visibility = View.INVISIBLE
         }
         for ((index, img) in imgList.withIndex()) {
@@ -109,11 +114,11 @@ class EditPage : AppCompatActivity() {
             editpage_et_myname.setText(intent.getStringExtra("NAME"))
             editpage_et_nickname.setText(intent.getStringExtra("NICK"))
             editpage_lo_intro.setVisibility(View.INVISIBLE)
-            editpage_lo_profile.setVisibility(View.VISIBLE)
+            editpage_lo_profileconstraint.setVisibility(View.VISIBLE)
         } else {
             editpage_et_intro.setText(intent.getStringExtra("INTRO"))
             editpage_lo_intro.setVisibility(View.VISIBLE)
-            editpage_lo_profile.setVisibility(View.INVISIBLE)
+            editpage_lo_profileconstraint.setVisibility(View.INVISIBLE)
         }
 
         var editpage_iv_save = findViewById<ImageView>(R.id.editpage_iv_save)
@@ -124,7 +129,8 @@ class EditPage : AppCompatActivity() {
                     putExtra("ID", editpage_tv_myid.text)
                     putExtra("NAME", editpage_et_myname.text.toString())
                     putExtra("NICK", editpage_et_nickname.text.toString())
-                    putExtra("IMG", imgList[imgInt])
+                    if (imgInt >= imgList.size) { putExtra("IMG", imgInt) }
+                    else { putExtra("IMG", imgList[imgInt]) }
                     putExtra("TARGET", "profile")
                 } else {
                     putExtra("ID", editpage_tv_myid.text)

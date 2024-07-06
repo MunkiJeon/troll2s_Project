@@ -176,7 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="14dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/detail_comment_submit_btn"
+            android:text="개시"
             android:textColor="?attr/colorDivider"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/detail_et_comment_box"

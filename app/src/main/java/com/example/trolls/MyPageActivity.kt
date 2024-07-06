@@ -7,8 +7,11 @@ import User
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
+import android.view.View
 import android.widget.Button
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -28,16 +31,7 @@ class MyPageActivity : AppCompatActivity() {
     /**
      * 더미 데이터 정의
      */
-    private var userData = User(
-        "jeon",
-        "1234",
-        "전문기",
-        "moonki's nickname",
-        "hi!!!!hello",
-        mutableListOf(),
-        mutableListOf(),
-        R.drawable.dummy_image03
-    )
+    private lateinit var userData: User
 
     var jaeseon = User(
         "yoo",
@@ -119,12 +113,7 @@ class MyPageActivity : AppCompatActivity() {
         likes = mutableListOf(Like(jiwon))
     )
     val post_panni2 = Post(
-        2,
-        R.drawable.dummy_image04,
-        "빠니보틀 제목2",
-        "빠니보틀 본문2",
-        jaeseon,
-        comments = mutableListOf()
+        2, R.drawable.dummy_image04, "빠니보틀 제목2", "빠니보틀 본문2", jaeseon, comments = mutableListOf()
     )
     val post_kwack1 =
         Post(3, R.drawable.dummy_image06, "곽튜브 제목1", "곽튜브 본문2", jaeseon, comments = mutableListOf())
@@ -156,41 +145,44 @@ class MyPageActivity : AppCompatActivity() {
             resultDataId = result
             if (resultDataId!!.data!!.getStringExtra("TARGET") == "profile") {
                 //변경된 프로필 정보 업데이트
-                userData.name = resultDataId!!.data!!.getStringExtra("NAME") ?: throw Exception("No Name")
-                userData.nickname = resultDataId!!.data!!.getStringExtra("NICK") ?: throw Exception("No Nickname")
+                userData.name = resultDataId!!.data!!.getStringExtra("NAME") ?: "이름없음"
+                userData.nickname = resultDataId!!.data!!.getStringExtra("NICK") ?: "닉네임 없음"
                 userData.profileImageResource = resultDataId!!.data!!.getIntExtra("IMG", 0)
 
                 //변경된 프로필 정보 적용
-                //mypage_iv_profilepic.setImageResource(resultDataId!!.data!!.getIntExtra("IMG", 0))
-                Glide.with(this)
-                    .load(resultDataId!!.data!!.getIntExtra("IMG", 0))
+                Glide.with(this).load(userData.profileImageResource)
                     .apply(RequestOptions.bitmapTransform(RoundedCorners(90)))
                     .into(mypage_iv_profilepic)
-                mypage_tv_myid.setText(
-                    resultDataId!!.data!!.getStringExtra("ID") ?: throw Exception("No ID")
-                )
-                mypage_tv_myname.setText(
-                    resultDataId!!.data!!.getStringExtra("NAME") ?: throw Exception("No Name")
-                )
-                mypage_tv_nickname.setText(
-                    resultDataId!!.data!!.getStringExtra("NICK") ?: throw Exception("No Nick")
-                )
-            } else {
+                mypage_tv_myid.setText(userData.id)
+                mypage_tv_myname.setText(userData.name)
+                mypage_tv_nickname.setText(userData.nickname)
+            } else if(resultDataId!!.data!!.getStringExtra("TARGET") == "intro"){
                 //변경된 소개 업데이트
-                userData.intro = resultDataId!!.data!!.getStringExtra("INTRO") ?: throw Exception("No Nickname")
+                userData.intro = resultDataId!!.data!!.getStringExtra("INTRO") ?: ""
                 //변경된 소개 적용
-                mypage_tv_intro.setText(
-                    resultDataId!!.data!!.getStringExtra("INTRO") ?: throw Exception("No Intro")
-                )
+                mypage_tv_intro.setText(userData.intro)
+            } else {
+                //변경된 정보 업데이트
+                userData.name = resultDataId!!.data!!.getStringExtra("NAME") ?: "이름없음"
+                userData.nickname = resultDataId!!.data!!.getStringExtra("NICK") ?: "닉네임 없음"
+                userData.profileImageResource = resultDataId!!.data!!.getIntExtra("IMG", 0)
+                userData.intro = resultDataId!!.data!!.getStringExtra("INTRO") ?: ""
+
+                //변경된 정보 적용
+                Glide.with(this).load(userData.profileImageResource)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(90)))
+                    .into(mypage_iv_profilepic)
+                mypage_tv_myid.setText(userData.id)
+                mypage_tv_myname.setText(userData.name)
+                mypage_tv_nickname.setText(userData.nickname)
+                mypage_tv_intro.setText(userData.intro)
             }
         }
     }
     private var resultDataId: ActivityResult? = null
     private fun convertDpToPixel(dp: Int): Int {
         return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            dp.toFloat(),
-            this.resources.displayMetrics
+            TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this.resources.displayMetrics
         ).toInt()
     }
 
@@ -213,25 +205,19 @@ class MyPageActivity : AppCompatActivity() {
 
     //내가 좋아요한 글
     private var likes = mutableListOf(
-        like1_1,
-        like1_2,
-        like1_3,
-        like2_1,
-        like2_2,
-        like2_3,
-        like3_1,
-        like3_2,
-        like3_3,
-        like4_1,
-        like4_2,
-        like4_3,
-        like5_1,
-        like5_2,
-        like5_3,
-    )
-
+        like1_1, like1_2, like1_3,
+        like2_1, like2_2, like2_3,
+        like3_1, like3_2, like3_3,
+        like4_1, like4_2, like4_3,
+        like5_1, like5_2, like5_3,)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //메인화면에서 불러온 데이터 셋팅
+        userData = intent.getParcelableExtra("loginUser") ?: intent.getParcelableExtra("LIKE") ?: moonki
+
+//        Log.d("PostSize", userData.myPosts.size.toString())
+//        Log.d("LikesSize", userData.myLikes.size.toString())
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_my_page)
@@ -240,61 +226,79 @@ class MyPageActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //프로필 변경용 Intent
         var editIntent = Intent(this, EditPage::class.java)
 
+        //최상단 Top Layer
+        var mypage_tv_title = findViewById<TextView>(R.id.mypage_tv_title)
         var mypage_btn_gomain = findViewById<Button>(R.id.mypage_btn_gomain)
         var mypage_btn_gosetting = findViewById<Button>(R.id.mypage_btn_gosetting)
 
-        //프로필 설정 박스 부분
+        //TODO: 프로필 설정 박스 부분
         var mypage_btn_profilechange = findViewById<Button>(R.id.mypage_btn_profilechange)
         mypage_iv_profilepic = findViewById<CircleImageView>(R.id.mypage_iv_profilepic)
         mypage_tv_myid = findViewById<TextView>(R.id.mypage_tv_myid)
         mypage_tv_myname = findViewById<TextView>(R.id.mypage_tv_myname)
         mypage_tv_nickname = findViewById<TextView>(R.id.mypage_tv_nickname)
 
-        // 소개말 설정 부분
+        //TODO: 소개말 설정 부분
         mypage_tv_intro = findViewById<TextView>(R.id.mypage_tv_intro).apply {
-            setOnClickListener {
-                editIntent.apply {
-                    putExtra("INTRO", mypage_tv_intro.text)
-                    putExtra("TARGET", "intro")
+            if(intent.getStringExtra("TARGET") != "like"){
+                setOnClickListener {
+                    editIntent.apply {
+                        putExtra("INTRO", mypage_tv_intro.text)
+                        putExtra("TARGET", "intro")
+                    }
+                    getResultText.launch(editIntent)
                 }
-                getResultText.launch(editIntent)
             }
         }
 
         //TODO: 내가 작성한 글
         var mypage_lo_mypost = this.findViewById<LinearLayout>(R.id.mypage_lo_myposts)
+        var postIntent = Intent(this, DetailActivity::class.java)
         for (post in posts) {
             val circleView = CircleImageView(this)
             circleView.setImageResource(post.imageResource) // drawable id
+            circleView.setOnClickListener {
+                postIntent.putExtra("IMG", post.imageResource)
+                startActivity(postIntent)
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            }
             val circleView_params = LinearLayout.LayoutParams(
                 convertDpToPixel(90), // width
                 convertDpToPixel(90) // height
             )
             circleView_params.marginEnd = convertDpToPixel(15)
             circleView.layoutParams = circleView_params
-            // 스크롤뷰 바로 아래에 있는 레이아웃
             mypage_lo_mypost.addView(circleView)
         }
 
         //TODO: 내가 좋아요한 글
+        var mypage_tv_mylike = findViewById<TextView>(R.id.mypage_tv_mylike)
+        var mypage_lo_likelist = this.findViewById<HorizontalScrollView>(R.id.mypage_lo_likelist)
         var mypage_lo_mylikes = this.findViewById<LinearLayout>(R.id.mypage_lo_mylikes)
-//        for (like in likes) {
-        for (post in posts) {
+        var likeIntent = Intent(this, MyPageActivity::class.java)
+        for (like in likes) {
             val circleView = CircleImageView(this)
-//            circleView.setImageResource(like.imageResource) // drawable id
-            circleView.setImageResource(post.imageResource) // drawable id
+            circleView.setImageResource(like.checkedUser.profileImageResource) // drawable id
+            circleView.setOnClickListener{
+                likeIntent.putExtra("LIKE", like.checkedUser)
+                likeIntent.putExtra("TARGET","like")
+                    startActivity(likeIntent)
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            }
             val circleView_params = LinearLayout.LayoutParams(
                 convertDpToPixel(90), // width
                 convertDpToPixel(90) // height
             )
             circleView_params.marginEnd = convertDpToPixel(15)
             circleView.layoutParams = circleView_params
-            // 스크롤뷰 바로 아래에 있는 레이아웃
             mypage_lo_mylikes.addView(circleView)
         }
 
+        //화면 셋팅 부분
         Glide.with(this)//this = MainActivity
             //바꿀 이미지 리소스
             .load(userData.profileImageResource)
@@ -302,23 +306,30 @@ class MyPageActivity : AppCompatActivity() {
             .apply(RequestOptions.bitmapTransform(RoundedCorners(90)))
             //into = 어디다 그릴지
             .into(mypage_iv_profilepic)
-//        mypage_iv_profilepic.setImageResource(userData.profileImageResource)
-
         mypage_tv_myid.setText(userData.id)
         mypage_tv_myname.setText(userData.name)
         mypage_tv_nickname.setText(userData.nickname)
 
-        mypage_tv_intro.setText(userData.intro)
+        if(intent.getStringExtra("TARGET") == "like"){
+            mypage_tv_title.setText(userData.id +"'s Page")
+            mypage_btn_profilechange.visibility = View.INVISIBLE
+            mypage_tv_mylike.visibility = View.INVISIBLE
+            mypage_lo_likelist.visibility = View.INVISIBLE
+        } else {
+            mypage_btn_profilechange.visibility = View.VISIBLE
+            mypage_tv_mylike.visibility = View.VISIBLE
+            mypage_lo_likelist.visibility = View.VISIBLE
+        }
 
         mypage_btn_gomain.setOnClickListener {
             finish()
         }
+
         mypage_btn_gosetting.setOnClickListener {
-            var optionIntent = Intent(this,OptionActivity::class.java)
+            var optionIntent = Intent(this, OptionActivity::class.java)
             startActivity(optionIntent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
-
-
 
         mypage_btn_profilechange.setOnClickListener {
             editIntent.apply {
@@ -329,8 +340,8 @@ class MyPageActivity : AppCompatActivity() {
                 putExtra("TARGET", "profile")
             }
             getResultText.launch(editIntent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
-
 
     }
 }
