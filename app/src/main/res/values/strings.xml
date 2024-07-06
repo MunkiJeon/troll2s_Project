@@ -66,6 +66,7 @@
 
     <string name="change_font_a">폰트 A</string>
     <string name="change_font_b">폰트 B</string>
+    <string name="bottom_sheet_like_head_text">좋아요</string>
 
-  
+
 </resources>

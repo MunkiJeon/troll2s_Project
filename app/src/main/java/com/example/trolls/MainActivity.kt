@@ -31,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class MainActivity : AppCompatActivity() {
 
-    val youtuberToPosts = mutableMapOf<Youtuber, MutableList<Post>>()
+   /* val youtuberToPosts = mutableMapOf<Youtuber, MutableList<Post>>()
     val youtubers = mutableListOf<Youtuber>()
     val posts = mutableListOf<Post>()
 
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         youtubers.add(soy)
 
     }
-
+*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
+/*
         val main_page_btn_my_page = findViewById<Button>(R.id.main_page_btn_my_page)
 
         main_page_btn_my_page.setOnClickListener{
@@ -305,6 +305,6 @@ class MainActivity : AppCompatActivity() {
         entire_layout.addView(main_page_layout_post_icons)
         entire_layout.addView(main_page_layout_post_content)
 
-        return entire_layout
+        return entire_layout*/
     }
 }
