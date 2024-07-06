@@ -5,7 +5,6 @@
     <!--TODO: 위에 창에서 Open Editor 클릭 후 영문으로 바꿔주기-->
 
 
-
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -78,5 +77,5 @@
     <string name="mypage_likes">좋아요</string>
     <string name="editpage_tv_optionstitle">변경할 이미지를 선택해 주세요.</string>
     <string name="mypage_main">메인 화면</string>
-  
+
 </resources>

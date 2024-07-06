@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editpage_iv_cancel"
         app:srcCompat="@drawable/baseline_check_24"
-        app:tint="?attr/colorBox" />
+        app:tint="?attr/colorImageView" />
 
     <ImageView
         android:id="@+id/editpage_iv_cancel"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_close_24"
-        app:tint="?attr/colorBox" />
+        app:tint="?attr/colorImageView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editpage_lo_profile"

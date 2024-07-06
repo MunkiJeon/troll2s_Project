@@ -15,19 +15,15 @@
         <activity
             android:name=".EditPage"
             android:exported="false" />
-
         <activity
             android:name=".DetailActivity"
             android:exported="true" />
-
         <activity
             android:name=".MyPageActivity"
             android:exported="false" />
-
         <activity
             android:name=".OptionActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -36,7 +32,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

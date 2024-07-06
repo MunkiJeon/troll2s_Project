@@ -5,20 +5,19 @@ import Like
 import Post
 import User
 import Youtuber
+import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.util.Pair
 import android.util.TypedValue
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
 import android.view.animation.ScaleAnimation
 import android.widget.Button
-import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -31,8 +30,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import de.hdodenhof.circleimageview.CircleImageView
-import java.io.ByteArrayOutputStream
-import android.util.Pair
 
 class MainActivity : AppCompatActivity() {
 
@@ -110,6 +107,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -119,7 +117,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
 
         val main_page_btn_my_page = findViewById<Button>(R.id.main_page_btn_my_page)
 
@@ -144,6 +141,8 @@ class MainActivity : AppCompatActivity() {
             main_page_civ_youtuber_icon.layoutParams = main_page_icon_youtuber_params
             main_page_civ_youtuber_icon.borderWidth = convertDpToPixel(0)
             main_page_civ_youtuber_icon.borderColor = ContextCompat.getColor(this, R.color.button)
+//            main_page_civ_youtuber_icon.borderColor = ContextCompat.getColor(this, R.color.image_view)
+//            main_page_civ_youtuber_icon.borderColor = resources.getColor(R.attr.colorImageView)
 
             val main_page_inner_layout_contents = findViewById<LinearLayout>(R.id.main_page_inner_layout_contents)
             main_page_inner_layout_contents.orientation = LinearLayout.VERTICAL
@@ -187,6 +186,7 @@ class MainActivity : AppCompatActivity() {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this.resources.displayMetrics).toInt()
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun makeMainPageContent(post: Post) : LinearLayout {
         val entire_layout = LinearLayout(this)
         entire_layout.orientation = LinearLayout.VERTICAL
@@ -225,9 +225,17 @@ class MainActivity : AppCompatActivity() {
 
         scaleAnimation.interpolator = boundInterpolator
 
-
+//        ic_like.buttonTintList = resources.getColorStateList(R.color.button)
+//        ic_like.compoundDrawables.first().setTint(R.color.button)
+//        ic_like.backgroundTintList = ColorStateList.valueOf(R.color.button)
+//        ic_like.backgroundTintList = resources.getColorStateList(R.color.button)
+        ic_like.backgroundTintList = resources.getColorStateList(R.color.button, null)
         ic_like.transitionName = "tb_like"
         ic_like.setBackgroundResource(R.drawable.main_page_sel_like)
+
+//        ic_like.highlightColor = R.color.image_view
+//        DrawableCompat.setTint(ic_like.buttonDrawable!!, ContextCompat.getColor(this,R.color.image_view))
+
         for (like in post.likes) {
             if(like.checkedUser.id == logInedUser.id) {
                 ic_like.isChecked = true
@@ -242,6 +250,8 @@ class MainActivity : AppCompatActivity() {
         ic_like.textOn = ""
         ic_like.textOff = ""
         ic_like.text = ""
+//        ic_like.setBackgroundColor(R.attr.colorImageView)
+//        ic_like.setBackgroundColor(R.color.image_view)
 
         // like button clicklistner
         ic_like.setOnCheckedChangeListener { compoundButton, isChecked ->
@@ -267,6 +277,7 @@ class MainActivity : AppCompatActivity() {
             convertDpToPixel(50)
         )
 
+//       click comment (to DetailActivity)
         ic_comment.setOnClickListener {
             // 디테일 페이지로 post 전송(댓글버튼 클릭)
 //            val intent_to_test = Intent(this, TestActivity::class.java)
@@ -282,7 +293,13 @@ class MainActivity : AppCompatActivity() {
                 Pair.create(content, "tv_content"),
             )
 //            startActivity(intent_to_test, options.toBundle())
+//            overridePendingTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out)
+//            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out, Color.TRANSPARENT)
+
+            val intentToDetail = Intent(this, DetailActivity::class.java)
+            startActivity(intentToDetail)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
         }
 
         main_page_layout_post_icons.addView(ic_like)
@@ -316,7 +333,7 @@ class MainActivity : AppCompatActivity() {
 
         main_page_layout_post_image.setOnClickListener {
 
-//             디테일 페이지로 post 전송(이미지 클릭)
+//          디테일 페이지로 post 전송(이미지 클릭)
             val options = ActivityOptions.makeSceneTransitionAnimation(
                 this,
                 Pair.create(image_view_post, "iv_main_image"),
@@ -326,35 +343,26 @@ class MainActivity : AppCompatActivity() {
             )
 
 
-            // click image
-//            val intent_to_test = Intent(this, TestActivity::class.java)
+            // click image (to DetailActivity)
+//            val intent_to_test = Intent(this, TestDetailActivity::class.java)
 //            Toast.makeText(this, post.toString(), Toast.LENGTH_SHORT).show()
 //            intent_to_test.putExtra("post", post)
 //            intent_to_test.putExtra("from", "image")
 //            intent_to_test.putExtra("content", post.content)
 //
 //            startActivity(intent_to_test, options.toBundle())
+
             // API version less than 33
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 
-            // API version more than 34
+            // API version more than 33
 //            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out)
         }
-
-
-
 
         entire_layout.addView(main_page_layout_post_image)
         entire_layout.addView(main_page_layout_post_icons)
         entire_layout.addView(main_page_layout_post_content)
 
         return entire_layout
-    }
-
-    private fun sendImage(image: Int): ByteArray {
-        val sendBitmap = BitmapFactory.decodeResource(resources, image)
-        val stream = ByteArrayOutputStream()
-        sendBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-        return stream.toByteArray()
     }
 }
