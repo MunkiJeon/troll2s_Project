@@ -16,4 +16,15 @@ class ExampleUnitTest {
         val n = 123L
         n.inv()
     }
+
+    fun solution(numbers: IntArray): String {
+        val sortedNumbers = numbers.map { it.toString() }
+            .sortedWith { a, b ->
+                (b + a).compareTo(a + b)
+            }
+
+        val result = sortedNumbers.joinToString("")
+
+        return if (result.startsWith("0")) "0" else result
+    }
 }

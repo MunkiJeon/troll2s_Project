@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#101012</color>
+    <color name="button">#26272E</color>
+    <color name="text_default">#FEFEFE</color>
+    <color name="box">#414767</color>
+    <color name="text_solid">#FEFEFE</color>
+    <color name="divider">#267D7D7D</color>
+    <color name="image_view">#FEFEFE</color>
+</resources>

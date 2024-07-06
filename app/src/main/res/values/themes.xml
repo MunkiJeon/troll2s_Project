@@ -1,20 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Trolls.Day" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.Trolls.Font_normal" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColor" type="color">@color/text_default</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="buttonStyle">@style/button_light</item>
 
         <item name="colorButton">@color/button</item>
         <item name="colorBox">@color/box</item>
+        <item name="colorTextInBox">@color/text_solid</item>
+        <item name="colorDivider">@color/divider</item>
+
+        <item name="colorImageView">@color/image_view</item>
+
+        <item name="sizeTitleText">32sp</item>
+        <item name="sizeSubtitleText">22sp</item>
+        <item name="sizeBodyText">18sp</item>
     </style>
-
-    <style name="Base.Theme.Trolls.Night" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:textColor" type="color">@color/text_default_dark</item>
-        <item name="android:windowBackground">@color/background_dark</item>
-        <item name="buttonStyle">@style/button_dark</item>
-
-        <item name="colorButton">@color/button_dark</item>
-        <item name="colorBox">@color/box_dark</item>
+  <!-- Base application theme. -->
+    <style name="Base.Base.Theme.Trolls.Day" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 </resources>
