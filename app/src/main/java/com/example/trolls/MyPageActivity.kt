@@ -6,9 +6,11 @@ import Like
 import Post
 import User
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Pair
 import android.util.TypedValue
 import android.view.View
 import android.widget.Button
@@ -162,11 +164,14 @@ class MyPageActivity : AppCompatActivity() {
         var postIntent = Intent(this, DetailActivity::class.java)
         for (post in posts) {
             val circleView = CircleImageView(this)
+            circleView.transitionName = "iv_main_image"
             circleView.setImageResource(post.imageResource) // drawable id
+
             circleView.setOnClickListener {
-//                postIntent.putExtra("IMG", post.imageResource)
+                val options = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(circleView, "iv_main_image"),)
+                postIntent.putExtra("loginedUser", userData)
                 postIntent.putExtra("post", post)
-                startActivity(postIntent)
+                startActivity(postIntent, options.toBundle())
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
             val circleView_params = LinearLayout.LayoutParams(
