@@ -110,7 +110,6 @@ class MyPageActivity : AppCompatActivity() {
 
     //TODO: type miss match
     val post_panni1 = Post(
-        1,
         R.drawable.dummy_image03,
         "빠니보틀 제목1",
         "빠니보틀 본문1",
@@ -119,7 +118,6 @@ class MyPageActivity : AppCompatActivity() {
         likes = mutableListOf(Like(jiwon))
     )
     val post_panni2 = Post(
-        2,
         R.drawable.dummy_image04,
         "빠니보틀 제목2",
         "빠니보틀 본문2",
@@ -127,9 +125,9 @@ class MyPageActivity : AppCompatActivity() {
         comments = mutableListOf()
     )
     val post_kwack1 =
-        Post(3, R.drawable.dummy_image06, "곽튜브 제목1", "곽튜브 본문2", jaeseon, comments = mutableListOf())
+        Post(R.drawable.dummy_image06, "곽튜브 제목1", "곽튜브 본문2", jaeseon, comments = mutableListOf())
     val post_kwack2 =
-        Post(4, R.drawable.dummy_image07, "곽튜브 제목2", "곽튜브 본문2", jaeseon, comments = mutableListOf())
+        Post(R.drawable.dummy_image07, "곽튜브 제목2", "곽튜브 본문2", jaeseon, comments = mutableListOf())
 
 
     val like1_1 = Like(jaeseon)

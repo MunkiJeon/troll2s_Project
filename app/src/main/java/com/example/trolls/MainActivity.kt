@@ -1,6 +1,7 @@
 package com.example.trolls
 
 import Comment
+import Dummy
 import Like
 import Post
 import User
@@ -33,78 +34,13 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class MainActivity : AppCompatActivity() {
 
-    val youtuberToPosts = mutableMapOf<Youtuber, MutableList<Post>>()
-    val youtubers = mutableListOf<Youtuber>()
-    val posts = mutableListOf<Post>()
 
-    //TODO: Intro 추가
-    val jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname")
-    val jiwon = User("shin", "1234","신지원", "jiwon's nickname")
-    val moonki = User("jeon", "1234","전문기", "moonki's nickname")
-    val rian = User("kim", "1234","김리안", "rian's nickname")
-    val seungmo = User("seong", "1234","성승모", "seungmo's nickname")
+    val dummy = Dummy()
 
-    val comment1_1 = Comment("댓글입니다1_1", jaeseon)
-    val comment1_2 = Comment("댓글입니다1_2", jaeseon)
-    val comment1_3 = Comment("댓글입니다1_3", jaeseon)
-    val comment2_1 = Comment("댓글입니다2_1", jiwon)
-    val comment2_2 = Comment("댓글입니다2_2", jiwon)
-    val comment2_3 = Comment("댓글입니다2_3", jiwon)
-    val comment3_1 = Comment("댓글입니다3_1", moonki)
-    val comment3_2 = Comment("댓글입니다3_2", moonki)
-    val comment3_3 = Comment("댓글입니다3_3", moonki)
-    val comment4_1 = Comment("댓글입니다4_1", seungmo)
-    val comment4_2 = Comment("댓글입니다4_2", seungmo)
-    val comment4_3 = Comment("댓글입니다4_3", seungmo)
-    val comment5_1 = Comment("댓글입니다5_1", rian)
-    val comment5_2 = Comment("댓글입니다5_2", rian)
-    val comment5_3 = Comment("댓글입니다5_3", rian)
-
-    val like1_1 = Like(jaeseon)
-    val like1_2 = Like(jiwon)
-    val like1_3 = Like(moonki)
-    val like2_1 = Like(jaeseon)
-    val like2_2 = Like(jiwon)
-    val like2_3 = Like(moonki)
-    val like3_1 = Like(moonki)
-    val like3_2 = Like(seungmo)
-    val like3_3 = Like(rian)
-    val like4_1 = Like(seungmo)
-    val like4_2 = Like(rian)
-    val like4_3 = Like(moonki)
-    val like5_1 = Like(rian)
-    val like5_2 = Like(moonki)
-    val like5_3 = Like(jiwon)
-
-    val logInedUser = jaeseon
-
-    val panni = Youtuber("panni", "1234", "빠니보틀", "panni", profileIcon = R.drawable.panni_bottle_profile_image)
-    val kwack = Youtuber("kwack", "1234", "곽튜브", "kwack",profileIcon = R.drawable.kwack_profile_image)
-    val wonji = Youtuber("wonji", "1234", "원지", "wonji", profileIcon = R.drawable.wonji_profile_image)
-    val soy = Youtuber("soy", "1234", "쏘이", "soy", profileIcon = R.drawable.soy_profile_image)
-
-    val post_panni1 = Post(1, R.drawable.post_main_image_panni1, "빠니보틀 제목1","빠니보틀 본문1", jaeseon, panni, likes = mutableListOf(Like()))
-    val post_panni2 = Post(2, R.drawable.post_main_image_panni2, "빠니보틀 제목2","빠니보틀 본문2", jaeseon, panni)
-    val post_kwack1 = Post(3, R.drawable.post_main_image_kwack2, "곽튜브 제목1","곽튜브 본문2", jaeseon, kwack)
-    val post_kwack2 = Post(4, R.drawable.post_main_image_kwack1, "곽튜브 제목2","곽튜브 본문2", jaeseon, kwack)
-
-
-    init{
-        posts.add(post_panni1)
-        posts.add(post_panni2)
-        posts.add(post_kwack1)
-        posts.add(post_kwack2)
-
-
-        youtuberToPosts[panni] = mutableListOf(post_panni1, post_panni2)
-        youtuberToPosts[kwack] = mutableListOf(post_kwack1, post_kwack2)
-        youtubers.add(panni)
-        youtubers.add(kwack)
-        youtubers.add(wonji)
-        youtubers.add(soy)
-
-    }
-
+    val logInedUser = dummy.users[0]
+    val posts = dummy.posts
+    val youtubers = dummy.youtubers
+    val youtuberToPosts = dummy.youtuberToPosts
 
 
     @SuppressLint("ResourceType")
@@ -153,7 +89,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 main_page_civ_youtuber_icon.borderWidth = convertDpToPixel(5)
                 main_page_inner_layout_contents.removeAllViews()
-                main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
+
+
+//                main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
+                main_page_sv_contents.post{
+                    main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
+                }
+
+
                 Toast.makeText(this, youtuber.name, Toast.LENGTH_SHORT).show()
                 val posts = when(before_selected_icon) {
                     main_page_civ_youtuber_icon -> posts
