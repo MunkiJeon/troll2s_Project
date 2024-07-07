@@ -1,6 +1,7 @@
 package com.example.trolls
 
 import Comment
+import Dummy
 import Like
 import Post
 import User
@@ -32,21 +33,17 @@ class DetailActivity : AppCompatActivity() {
     // 임시로 post1로 설정
     // 재선님 페이지와 연결하면 재선님 페이지에서 해당 포스트와 로그인한 유저를 받아와서 post1 부분을 받아온 데이터로 바꿔야함
 
+
+    val dummy = Dummy()
+
+
+
     // sample data 선언
-    val posts = mutableListOf<Post>()
-    val likes = mutableListOf<Like>()
-    val comments = mutableListOf<Comment>()
-    var post1: Post
-    var post2: Post
-    val user1: User
-    val user2: User
-    val user3: User
-    val user4: User
-    val user5: User
-    val user6: User
-    val user7: User
-    val user8: User
-    val loginedUser: User
+    val posts = dummy.posts
+    val likes = dummy.likes
+    val comments = dummy.comments
+
+    val loginedUser = dummy.users[0]
 
     // 지우면 안되는 변수들
     lateinit var parentLayout: LinearLayout
@@ -58,65 +55,6 @@ class DetailActivity : AppCompatActivity() {
     val commentLayouts = mutableListOf<View>()
     var isClick = false
 
-    init {
-        user1 = User("test999", "test123", "test", "test1", "", posts, likes, R.drawable.sample_img1)
-        user2 = User("test999", "test123", "test", "test2", "", posts, likes, R.drawable.sample_img1)
-        user3 = User("test999", "test123", "test", "test3", "", posts, likes, R.drawable.sample_img1)
-        user4 = User("test999", "test123", "test", "test4", "", posts, likes, R.drawable.sample_img1)
-        user5 = User("test999", "test123", "test", "test5", "", posts, likes, R.drawable.sample_img1)
-        user6 = User("test999", "test123", "test", "test6", "", posts, likes, R.drawable.sample_img1)
-        user7 = User("test999", "test123", "test", "test7", "", posts, likes, R.drawable.sample_img1)
-        user8 = User("test999", "test123", "test", "test8", "", posts, likes, R.drawable.sample_img2)
-        loginedUser = user7
-
-        post1 = Post(R.drawable.sample_img1, "Title 1", "Content 1", user1, comments = comments, likes = likes)
-        post2 = Post(R.drawable.sample_img1, "Title 2", "Content 2", user1, comments = comments, likes = likes)
-        posts.add(post1)
-        posts.add(post2)
-
-        val like1 = Like(user1)
-        val like2 = Like(user2)
-        val like3 = Like(user3)
-        val like4 = Like(user4)
-        val like5 = Like(user5)
-        val like6 = Like(user6)
-        val like7 = Like(user7)
-        val like8 = Like(user8)
-        likes.add(like1)
-        likes.add(like2)
-        likes.add(like3)
-        likes.add(like4)
-        likes.add(like5)
-        likes.add(like6)
-        likes.add(like8)
-
-        val comment1 = Comment("나는 김밥 나는 김밥", user1)
-        val comment2 = Comment("댓글 1", user1)
-        val comment3 = Comment("댓글 2", user2)
-        val comment4 = Comment("댓글 3", user3)
-        val comment5 = Comment("댓글 4", user4)
-        val comment6 = Comment("댓글 5", user5)
-        val comment7 = Comment("댓글 6", user6)
-        val comment8 = Comment("댓글 7", user7)
-        val comment9 = Comment("댓글 8", user5)
-        val comment10 = Comment("댓글 9", user7)
-        val comment11 = Comment("댓글 10", user2)
-        val comment12 = Comment("댓글 11", user8)
-        comments.apply {
-            add(comment1)
-            add(comment2)
-            add(comment3)
-            add(comment4)
-            add(comment5)
-            add(comment6)
-            add(comment7)
-            add(comment8)
-            add(comment9)
-            add(comment10)
-            add(comment11)
-            add(comment12)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,6 +64,8 @@ class DetailActivity : AppCompatActivity() {
         // -----------------------------------------------------------------------------------------------------------------------
 
         // 필요한 변수들 선언
+        val post1 = intent.getParcelableExtra<Post>("post")?:dummy.posts[0]
+
 
         // 레이아웃
         val mainLayout = findViewById<ConstraintLayout>(R.id.main)
@@ -203,12 +143,12 @@ class DetailActivity : AppCompatActivity() {
             .into(detailIvCommentProfileImg)
 
         // 좋아요 목록 부분 텍스트 셋팅
-        showLikers(detailLikers)
+        showLikers(detailLikers, post1)
 
         // 댓글 리스트 안에 있는 요소들을 동적으로 추가하는 로직
         post1.comments.forEach {
             // 댓글 레이아웃을 추가하는 함수
-            addCommentLayout(it)
+            addCommentLayout(it, post1)
         }
 
         // -----------------------------------------------------------------------------------------------------------------------
@@ -270,7 +210,7 @@ class DetailActivity : AppCompatActivity() {
         changedBtnColor(detailEtCommentBox)
 
         // 댓글을 작성하고 submit 버튼을 누르면 댓글이 추가되는 함수
-        setSubmitButtonListenerForNewComment()
+        setSubmitButtonListenerForNewComment(post1)
 
         // 좋아요 버튼 클릭 리스너
         // 좋아요 버튼이 이미 눌렸으면 클릭 취소를 해야하므로 해당 글의 좋아요 목록에서 삭제 후, 이미지 리소스 변경
@@ -363,7 +303,7 @@ class DetailActivity : AppCompatActivity() {
      * @param comment : 추가할 댓글 객체
      * @author 신지원
      */
-    fun addCommentLayout(comment: Comment) {
+    fun addCommentLayout(comment: Comment, post1: Post) {
 
         // 부모뷰에 추가할 댓글 레이아웃
         val commentLayout = layoutInflater.inflate(R.layout.layout_comment_list, null)
@@ -473,7 +413,7 @@ class DetailActivity : AppCompatActivity() {
      * @param view : 좋아요를 누가 눌렀는지 보여주는 텍스트뷰
      * @author 신지원
      */
-    fun showLikers(view: TextView) {
+    fun showLikers(view: TextView, post1: Post) {
 
         // 해당 글의 좋아요 리스트가 비어있지 않다면
         if (post1.likes.isNotEmpty()) {
@@ -536,7 +476,7 @@ class DetailActivity : AppCompatActivity() {
      *
      * @author 신지원
      */
-    fun setSubmitButtonListenerForNewComment() {
+    fun setSubmitButtonListenerForNewComment(post: Post) {
 
         // detailEtCommentBox의 힌트를 셋팅
         detailEtCommentBox.hint = "댓글을 작성해주세요"
@@ -547,7 +487,7 @@ class DetailActivity : AppCompatActivity() {
             if (detailEtCommentBox.text.isNotEmpty()) {
 
                 // 댓글 레이아웃을 추가하는 함수 (댓글 객체에 detailEtCommentBox의 텍스트와 로그인 유저를 담아 넘김)
-                addCommentLayout(Comment(detailEtCommentBox.text.toString(), loginedUser))
+                addCommentLayout(Comment(detailEtCommentBox.text.toString(), loginedUser), post)
 
                 // 댓글을 작성하고 submit 버튼을 눌렀을 때 detailEtCommentBox의 텍스트를 비워줌
                 detailEtCommentBox.text = null
