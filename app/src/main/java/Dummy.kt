@@ -3,22 +3,24 @@ import com.example.trolls.R
 class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutableMapOf(),
             val youtubers: MutableList<Youtuber> = mutableListOf(),
             val posts: MutableList<Post> = mutableListOf(),
-            val users: MutableList<User> = mutableListOf()
+            val users: MutableList<User> = mutableListOf(),
+            val likes: MutableList<Like> = mutableListOf(),
+            val comments: MutableList<Comment> = mutableListOf()
 ) {
 
     init{
 
         //TODO: Intro 추가
-        val jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname")
-        val jiwon = User("shin", "1234","신지원", "jiwon's nickname")
-        val moonki = User("jeon", "1234","전문기", "moonki's nickname")
-        val rian = User("kim", "1234","김리안", "rian's nickname")
-        val seungmo = User("seong", "1234","성승모", "seungmo's nickname")
+        val jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname", profileImageResource = R.drawable.profile02)
+        val jiwon = User("shin", "1234","신지원", "jiwon's nickname", profileImageResource = R.drawable.profile04)
+        val mun = User("jeon", "1234","전문기", "munki's nickname", profileImageResource = R.drawable.profile03)
+        val rian = User("kim", "1234","김리안", "rian's nickname", profileImageResource = R.drawable.profile01)
+        val seungmo = User("seong", "1234","성승모", "seungmo's nickname", profileImageResource = R.drawable.profile05)
 
 //        users = mutableListOf(jaeseon, jiwon, moonki, rian, seungmo)
         users.add(jaeseon)
         users.add(jiwon)
-        users.add(moonki)
+        users.add(mun)
         users.add(rian)
         users.add(seungmo)
 
@@ -28,9 +30,9 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
         val comment2_1 = Comment("댓글입니다2_1", jiwon)
         val comment2_2 = Comment("댓글입니다2_2", jiwon)
         val comment2_3 = Comment("댓글입니다2_3", jiwon)
-        val comment3_1 = Comment("댓글입니다3_1", moonki)
-        val comment3_2 = Comment("댓글입니다3_2", moonki)
-        val comment3_3 = Comment("댓글입니다3_3", moonki)
+        val comment3_1 = Comment("댓글입니다3_1", mun)
+        val comment3_2 = Comment("댓글입니다3_2", mun)
+        val comment3_3 = Comment("댓글입니다3_3", mun)
         val comment4_1 = Comment("댓글입니다4_1", seungmo)
         val comment4_2 = Comment("댓글입니다4_2", seungmo)
         val comment4_3 = Comment("댓글입니다4_3", seungmo)
@@ -40,18 +42,18 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
 
         val like1_1 = Like(jaeseon)
         val like1_2 = Like(jiwon)
-        val like1_3 = Like(moonki)
+        val like1_3 = Like(mun)
         val like2_1 = Like(jaeseon)
         val like2_2 = Like(jiwon)
-        val like2_3 = Like(moonki)
-        val like3_1 = Like(moonki)
+        val like2_3 = Like(mun)
+        val like3_1 = Like(mun)
         val like3_2 = Like(seungmo)
         val like3_3 = Like(rian)
         val like4_1 = Like(seungmo)
         val like4_2 = Like(rian)
-        val like4_3 = Like(moonki)
+        val like4_3 = Like(mun)
         val like5_1 = Like(rian)
-        val like5_2 = Like(moonki)
+        val like5_2 = Like(mun)
         val like5_3 = Like(jiwon)
 
 //        val logInedUser = jaeseon
@@ -67,11 +69,11 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
         val post_panni4 = Post(R.drawable.post_main_image_panni4, "빠니보틀 제목4","MBC <태어난 김에 세계일주> 시리즈에 빠니보틀이 합류하면서 분위기가 확 바뀌었다. 그가 합류하기 전까지는 기존 여행 예능에 가까웠는데 그 틀을 깨버린 것이다. 기안84의 영어 표현을 고쳐주거나 돈을 펑펑 쓰는 지갑을 압수하는 등 인간적인 모습은 물론 재미있는 장면도 많이 나왔다.", jiwon, panni)
         val post_panni5 = Post(R.drawable.post_main_image_panni5, "빠니보틀 제목5","항상 긍정적이다. 배려하는 행동도 몸에 배어있다. 페루 지역에서 노트북 가방을 도둑맞은 적이 있다. 150만 원가량의 돈과 카드, 노트북, 영상 파일, 외장하드, 각종 문서를 잃어버렸음에도 불구하고 빠니보틀은 메인 가방은 도난당하지 않았다며 웃었다. 에너지가 좋다. 모두가 빠니보틀에 스며들 수밖에 없다.", jiwon, panni)
         val post_panni6 = Post(R.drawable.post_main_image_panni6, "빠니보틀 제목6","빠니보틀은 1987년생으로 강원도 춘천에서 태어났다. 원래부터 자유분방한 성격에 여행을 좋아했다. 2007년 일본, 2009년 유럽, 2014년 남미를 자전거로 여행했으며, 2017년에는 동남아시아, 인도로 배낭여행을 떠났다. 그때 찍은 짤막한 영상들을 유튜브에 올리기도 했다. 프리랜서 생활을 하다가 잠시 디자인 회사에서 인턴 생활을 하기도 했다. 하지만 성격과 맞지 않는 보수적인 직장 환경에 일할 의욕이 나지 않았다. 결국 인턴 기간이 끝나자 백수가 됐다.", jiwon, panni)
-        val post_kwack1 = Post(R.drawable.post_main_image_kwack1, "곽튜브 제목1","곽튜브보다 인간 곽준빈을 소개하고 싶었다. 유튜버로서 알게 모르게 여행하며 부담이 있었을텐데, 세계기사식당에선 마음 편하게 여행하고 인간적인 곽준빈 모습이 보였으면 했다. 현지에서도 곽튜브가 아니라 곽준빈으로 바라보지 않느냐. ", moonki, kwack)
-        val post_kwack2 = Post(R.drawable.post_main_image_kwack2, "곽튜브 제목2","곽준빈이 홍콩, 태국, 일본, 키르기스스탄 등 해외 기사식당을 방문하는 여행기다. 송 PD는 자이언트 펭TV에서 제작 PD를 맡았고, 이번이 첫 연출작이다. 콘텐츠진흥원 지원 사업에 선정됐을 때는 우려의 시선이 적지 않았다. 전형적인 EBS 프로그램이 아닌 만큼 내부 시사회에서도 반응이 엇갈렸다.", moonki, kwack)
+        val post_kwack1 = Post(R.drawable.post_main_image_kwack1, "곽튜브 제목1","곽튜브보다 인간 곽준빈을 소개하고 싶었다. 유튜버로서 알게 모르게 여행하며 부담이 있었을텐데, 세계기사식당에선 마음 편하게 여행하고 인간적인 곽준빈 모습이 보였으면 했다. 현지에서도 곽튜브가 아니라 곽준빈으로 바라보지 않느냐. ", mun, kwack)
+        val post_kwack2 = Post(R.drawable.post_main_image_kwack2, "곽튜브 제목2","곽준빈이 홍콩, 태국, 일본, 키르기스스탄 등 해외 기사식당을 방문하는 여행기다. 송 PD는 자이언트 펭TV에서 제작 PD를 맡았고, 이번이 첫 연출작이다. 콘텐츠진흥원 지원 사업에 선정됐을 때는 우려의 시선이 적지 않았다. 전형적인 EBS 프로그램이 아닌 만큼 내부 시사회에서도 반응이 엇갈렸다.", mun, kwack)
         val post_kwack3 = Post(R.drawable.post_main_image_kwack3, "곽튜브 제목3","곽튜브를 통해 세계인들이 어떻게 사는지 엿볼 수 있다. 집값이 올라서 고통 받거나 사업이 망해서 힘들어하고, 딸 자랑을 하거나 연애 고민을 털어놓는 등 우리네 모습과 별반 다르지 않다. \"교육방송(EBS)에서 펭수를 만들었지만, 가치와 감동을 줘 많은 사람들의 사랑을 받았다. 꼭 정보를 제공해야 교육이 되는 건 아니\"라며 \"공영방송이 사회적으로 해야 하는 중요한 역할\"이라고 설명했다.", jaeseon, kwack)
-        val post_kwack4 = Post(R.drawable.post_main_image_kwack4, "곽튜브 제목4","신선한 아이템과 나라별 생활습관을 엮었다며 \"원래 물가 탐구를 고민했는데, 전면에 걸지 않고 자연스럽게  풀었다\"고 짚었다. \"홍콩에선 숙소를 빈관으로 잡았다. 한국 여관 같은 곳인데, 아파트와 게스트하우스가 같이 있다\"며 \"중앙아시아에선 고려인들을 만났다. ", moonki, kwack)
-        val post_kwack5 = Post(R.drawable.post_main_image_kwack5, "곽튜브 제목5","2회 홍콩편이 가장 기억에 남는다고 꼽았다. \"기사님이 투잡해서 길을 잘 몰랐다. 택시를 시작한 지 얼마 안 돼 10분 정도 걸리는 거리가 몇 시간 걸렸다. 그렇게 시키려고 해도 못할 것\"이라며 \"결국 준빈씨가 내비게이션을 보고 길을 알려줬다\"고 회상했다. \"태국은 택시가 거의 없고 그랩하는 분들이 많다. 그랩 기사들은 대부분 초보다.", moonki, kwack)
+        val post_kwack4 = Post(R.drawable.post_main_image_kwack4, "곽튜브 제목4","신선한 아이템과 나라별 생활습관을 엮었다며 \"원래 물가 탐구를 고민했는데, 전면에 걸지 않고 자연스럽게  풀었다\"고 짚었다. \"홍콩에선 숙소를 빈관으로 잡았다. 한국 여관 같은 곳인데, 아파트와 게스트하우스가 같이 있다\"며 \"중앙아시아에선 고려인들을 만났다. ", mun, kwack)
+        val post_kwack5 = Post(R.drawable.post_main_image_kwack5, "곽튜브 제목5","2회 홍콩편이 가장 기억에 남는다고 꼽았다. \"기사님이 투잡해서 길을 잘 몰랐다. 택시를 시작한 지 얼마 안 돼 10분 정도 걸리는 거리가 몇 시간 걸렸다. 그렇게 시키려고 해도 못할 것\"이라며 \"결국 준빈씨가 내비게이션을 보고 길을 알려줬다\"고 회상했다. \"태국은 택시가 거의 없고 그랩하는 분들이 많다. 그랩 기사들은 대부분 초보다.", mun, kwack)
         val post_kwack6 = Post(R.drawable.post_main_image_kwack6, "곽튜브 제목6","곽튜브 하면 '먹방'을 빼놓을 수 없다. 유튜브 채널에선 다이어트 선언을 한 뒤 점점 먹방으로 바뀌어 웃음을 주곤 했다. \"먹방은 꽤 중요한 콘텐츠\"라며 \"준빈씨가 워낙 음식을 안 가리고 잘 먹는다. 세계기사식당에선 화려하거나 비싸지 않고, tvN '스트리트 푸드 파이터'처럼 길거리 음식을 주로 먹는다.", rian, kwack)
         val post_wonji1 = Post(R.drawable.post_main_image_wonji1, "원지 제목1","원지는 “몇 년 동안 세계를 여행하면서 느낀 점은, 사람을 지탱하는 건 일상이고, 사람을 나아가게 하는 건 새로움이라는 것”이라고 말한다.", rian, wonji)
         val post_wonji2 = Post(R.drawable.post_main_image_wonji2, "원지 제목2","원지는 한곳에 오래 머무르는 느린 여행을 선호한다. 가장 인기 있는 영상은 조회 수 364만을 기록한 ‘미국 슬리핑 기차에서 보낸 놀라운 34시간’이다.", rian, wonji)
@@ -111,6 +113,36 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
         posts.add(post_wonji2)
         posts.add(post_wonji6)
         posts.add(post_soy5)
+
+        likes.add(like1_1)
+        likes.add(like1_2)
+        likes.add(like1_3)
+        likes.add(like2_1)
+        likes.add(like2_2)
+        likes.add(like2_3)
+        likes.add(like3_1)
+        likes.add(like3_2)
+        likes.add(like3_3)
+        likes.add(like4_1)
+        likes.add(like4_2)
+        likes.add(like4_3)
+        likes.add(like5_1)
+        likes.add(like5_2)
+        likes.add(like5_3)
+
+        comments.add(comment1_1)
+        comments.add(comment1_2)
+        comments.add(comment1_3)
+        comments.add(comment2_1)
+        comments.add(comment2_2)
+        comments.add(comment2_3)
+        comments.add(comment3_1)
+        comments.add(comment3_2)
+        comments.add(comment3_3)
+        comments.add(comment4_1)
+        comments.add(comment4_2)
+        comments.add(comment4_3)
+
 
         youtuberToPosts[panni] = mutableListOf(post_panni1, post_panni2,post_panni3,post_panni4,post_panni5,post_panni6)
         youtuberToPosts[kwack] = mutableListOf(post_kwack1, post_kwack2, post_kwack3, post_kwack4, post_kwack5, post_kwack6)

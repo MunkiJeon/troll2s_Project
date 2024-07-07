@@ -35,12 +35,11 @@ import de.hdodenhof.circleimageview.CircleImageView
 class MainActivity : AppCompatActivity() {
 
 
-    val dummy = Dummy()
-
-    val logInedUser = dummy.users[0]
-    val posts = dummy.posts
-    val youtubers = dummy.youtubers
-    val youtuberToPosts = dummy.youtuberToPosts
+    private val dummy = Dummy()
+    private val logInedUser = dummy.users[1]
+    private val posts = dummy.posts
+    private val youtubers = dummy.youtubers
+    private val youtuberToPosts = dummy.youtuberToPosts
 
 
     @SuppressLint("ResourceType")
