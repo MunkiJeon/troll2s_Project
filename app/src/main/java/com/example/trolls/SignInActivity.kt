@@ -17,9 +17,8 @@ import androidx.core.view.WindowInsetsCompat
 
 class SignInActivity : AppCompatActivity() {
 
-    private val dummy = Dummy()
-    private val users = dummy.users
-
+//    private val dummy = Dummy()
+    val users =Dummy.users
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +29,9 @@ class SignInActivity : AppCompatActivity() {
             insets
         }
 
+//        val users = Dummy.users
+        Dummy()
+
         val appLocale = LocaleListCompat.forLanguageTags("ko")
         AppCompatDelegate.setApplicationLocales(appLocale)
 
@@ -39,6 +41,7 @@ class SignInActivity : AppCompatActivity() {
         var singin_idinput_et = findViewById<EditText>(R.id.singin_idinput_et)
 
         singin_btn.setOnClickListener {
+
             var user = User()
             for (checkedUser in users) {
                 if(checkedUser.id.equals(singin_idinput_et.text.toString())
@@ -47,6 +50,8 @@ class SignInActivity : AppCompatActivity() {
                     break
                 }
             }
+            Log.d("login", "password : ${user.password}")
+            Log.d("login", "password : ${Dummy.users.size}")
 
             if (singin_idinput_et.text.toString().isEmpty()
                 || singin_password_putin_et.text.toString().isEmpty()

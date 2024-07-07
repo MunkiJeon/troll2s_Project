@@ -1,12 +1,15 @@
 import com.example.trolls.R
 
-class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutableMapOf(),
-            val youtubers: MutableList<Youtuber> = mutableListOf(),
-            val posts: MutableList<Post> = mutableListOf(),
-            val users: MutableList<User> = mutableListOf(),
-            val likes: MutableList<Like> = mutableListOf(),
-            val comments: MutableList<Comment> = mutableListOf()
-) {
+class Dummy() {
+
+    companion object{
+        val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutableMapOf()
+        val youtubers: MutableList<Youtuber> = mutableListOf()
+        val posts: MutableList<Post> = mutableListOf()
+        val users: MutableList<User> = mutableListOf()
+        val likes: MutableList<Like> = mutableListOf()
+        val comments: MutableList<Comment> = mutableListOf()
+    }
 
     init{
 

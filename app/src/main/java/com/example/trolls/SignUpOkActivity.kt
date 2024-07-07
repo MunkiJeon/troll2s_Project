@@ -1,5 +1,6 @@
 package com.example.trolls
 
+import User
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -19,7 +20,9 @@ class SignUpOkActivity : AppCompatActivity() {
             insets
         }
 
-        findViewById<TextView>(R.id.email_text).text = intent.getStringExtra("USEREMALL")!!
+//        findViewById<TextView>(R.id.email_text).text = intent.getStringExtra("USEREMALL")!!
+        val user = intent.getParcelableExtra("USERINFO")?: User()
+        findViewById<TextView>(R.id.nick_ok_tv).text = user.id
 
         findViewById<Button>(R.id.sininup_add_btn).setOnClickListener {
             finish()

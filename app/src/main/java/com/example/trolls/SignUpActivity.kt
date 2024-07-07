@@ -16,8 +16,6 @@ import androidx.core.view.WindowInsetsCompat
 
 class SignUpActivity: AppCompatActivity() {
 
-    private val dummy = Dummy()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,6 +26,7 @@ class SignUpActivity: AppCompatActivity() {
             insets
         }
 
+        val dummy = Dummy()
         var singup_usernickname_tv = findViewById<TextView>(R.id.singup_usernickname_tv)
         var editTextTextEmailAddress = findViewById<EditText>(R.id.editTextTextEmailAddress)
         var sinup_password_input_tv = findViewById<EditText>(R.id.sinup_password_input_tv)
@@ -46,11 +45,12 @@ class SignUpActivity: AppCompatActivity() {
             } else {
                 Toast.makeText(this, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
 
-                val user = User(editTextTextEmailAddress.text.toString(), sinup_password_input_tv.text.toString(), "temp name", singup_nickid_tv.text.toString(), "안녕하세요")
-                dummy.users.add(user)
+                val user = User(editTextTextEmailAddress.text.toString(), sinup_password_input_tv.text.toString(), "이름없음", singup_nickid_tv.text.toString(), "안녕하세요")
+                Dummy.users.add(user)
 
                 val it_singup = Intent(this, SignUpOkActivity::class.java)
 //                it_singup.putExtra("USEREMALL",editTextTextEmailAddress.text.toString())
+                it_singup.putExtra("USERINFO",user)
                 startActivity(it_singup)
                 finish()
             }

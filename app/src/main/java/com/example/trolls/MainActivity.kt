@@ -19,6 +19,7 @@ import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
 import android.view.animation.ScaleAnimation
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -35,10 +36,8 @@ import de.hdodenhof.circleimageview.CircleImageView
 class MainActivity : AppCompatActivity() {
 
 
-    private val dummy = Dummy()
-    private val posts = dummy.posts
-    private val youtubers = dummy.youtubers
-    private val youtuberToPosts = dummy.youtuberToPosts
+//    private val dummy = Dummy()
+
 
 
     @SuppressLint("ResourceType")
@@ -52,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val posts = Dummy.posts
+        val youtubers = Dummy.youtubers
+        val youtuberToPosts = Dummy.youtuberToPosts
+
         val logInedUser = intent.getParcelableExtra("USERINFO")?:User()
 
 //        Log.d("logInedUser", logInedUser.id)
@@ -63,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             val intent_to_My_page = Intent(this, MyPageActivity::class.java)
             intent_to_My_page.putExtra("loginUser", logInedUser)
             startActivity(intent_to_My_page)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
 
         val main_page_inner_layout_scroll_youtuber = findViewById<LinearLayout>(R.id.main_page_inner_layout_scroll_youtuber)
@@ -144,6 +148,7 @@ class MainActivity : AppCompatActivity() {
 
         val image_view_post = ImageView(this)
         val ic_comment = ImageView(this)
+//        val ic_comment = ImageButton(this)
         val ic_like = ToggleButton(this)
         val content = TextView(this)
 
@@ -212,6 +217,7 @@ class MainActivity : AppCompatActivity() {
 
         ic_comment.transitionName = "iv_comment"
         ic_comment.setImageResource(R.drawable.ic_comment)
+//        ic_comment.background = R.drawable.
         ic_comment.layoutParams = LinearLayout.LayoutParams(
             convertDpToPixel(50),
             convertDpToPixel(50)

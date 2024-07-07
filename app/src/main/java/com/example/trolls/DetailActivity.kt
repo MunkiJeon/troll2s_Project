@@ -58,6 +58,7 @@ class DetailActivity : AppCompatActivity() {
         if (intent.getStringExtra("from") == "ic_comment") {
             // 댓글 게시 버튼 눌렀을 때 댓글 추가하는 로직
             // 키보드를 보여줌
+            imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(detailEtCommentBox, InputMethodManager.SHOW_IMPLICIT)
 
             // detailEtCommentBox에 텍스트가 입력되면 submit 버튼 부분의 색깔이 바뀌는 코드
@@ -67,8 +68,8 @@ class DetailActivity : AppCompatActivity() {
             setSubmitButtonListenerForNewComment()
         }
 
-        post = intent.getParcelableExtra<Post>("post")?:Dummy().posts[0]
-        loginedUser = Dummy().users.get(0)
+        post = intent.getParcelableExtra<Post>("post")?:Dummy.posts[0]
+        loginedUser = Dummy.users.get(0)
 
         // 레이아웃
         val mainLayout = findViewById<ConstraintLayout>(R.id.main)

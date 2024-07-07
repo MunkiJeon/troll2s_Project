@@ -96,8 +96,8 @@ class MyPageActivity : AppCompatActivity() {
     // 소개말 설정 부분
     private lateinit var mypage_tv_intro: TextView
 
-    private val posts = dummy.posts
-    private val likes = dummy.likes
+    private val posts = Dummy.posts
+    private val likes = Dummy.likes
 
     //내가 작성한 글
 //    private var posts = mutableListOf(
