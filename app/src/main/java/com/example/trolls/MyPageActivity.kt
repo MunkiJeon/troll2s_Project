@@ -168,6 +168,8 @@ class MyPageActivity : AppCompatActivity() {
             circleView.setImageResource(post.imageResource) // drawable id
 
             circleView.setOnClickListener {
+//                postIntent.putExtra("IMG", post.imageResource)
+                postIntent.putExtra("activity from", "MyPage")
                 val options = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(circleView, "iv_main_image"),)
                 postIntent.putExtra("loginedUser", userData)
                 postIntent.putExtra("post", post)
