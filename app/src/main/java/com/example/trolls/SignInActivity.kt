@@ -1,7 +1,10 @@
 package com.example.trolls
 
+import Dummy
+import User
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -13,6 +16,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class SignInActivity : AppCompatActivity() {
+
+    private val dummy = Dummy()
+    private val users = dummy.users
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,13 +39,25 @@ class SignInActivity : AppCompatActivity() {
         var singin_idinput_et = findViewById<EditText>(R.id.singin_idinput_et)
 
         singin_btn.setOnClickListener {
-            if (singin_idinput_et.text.isEmpty() || singin_password_putin_et.text.isEmpty()||singin_idinput_et.text.length !in 6..24)
+            var user = User()
+            for (checkedUser in users) {
+                if(checkedUser.id.equals(singin_idinput_et.text.toString())
+                    && checkedUser.password.equals(singin_password_putin_et.text.toString())) {
+                    user = checkedUser
+                    break
+                }
+            }
+
+            if (singin_idinput_et.text.toString().isEmpty()
+                || singin_password_putin_et.text.toString().isEmpty()
+                || singin_password_putin_et.text.toString().length !in 6..24
+                || user.id.equals("empty user"))
                 Toast.makeText(this, "확인 후 로그인 바랍니다", Toast.LENGTH_SHORT).show()
             else {
                 Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show()
                 val it_singin = Intent(
                     this, MainActivity::class.java)
-                it_singin.putExtra("USERINFO",singin_idinput_et.text.toString())
+                it_singin.putExtra("USERINFO",user)
                 startActivity (it_singin)
                 finish()
             }

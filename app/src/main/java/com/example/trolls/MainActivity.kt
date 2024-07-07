@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private val dummy = Dummy()
-    private val logInedUser = dummy.users[1]
     private val posts = dummy.posts
     private val youtubers = dummy.youtubers
     private val youtuberToPosts = dummy.youtuberToPosts
@@ -52,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val logInedUser = intent.getParcelableExtra("USERINFO")?:User()
+
+//        Log.d("logInedUser", logInedUser.id)
 
         val main_page_btn_my_page = findViewById<Button>(R.id.main_page_btn_my_page)
 
@@ -89,7 +92,6 @@ class MainActivity : AppCompatActivity() {
                 main_page_civ_youtuber_icon.borderWidth = convertDpToPixel(5)
                 main_page_inner_layout_contents.removeAllViews()
 
-
 //                main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
                 main_page_sv_contents.post{
                     main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
@@ -109,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                     before_selected_icon = main_page_civ_youtuber_icon
 
                 for (post in posts) {
-                    main_page_inner_layout_contents.addView(makeMainPageContent(post))
+                    main_page_inner_layout_contents.addView(makeMainPageContent(post, logInedUser))
                 }
 
             }
@@ -120,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         val main_page_inner_layout_contents =
             findViewById<LinearLayout>(R.id.main_page_inner_layout_contents)
         for (post in posts) {
-            main_page_inner_layout_contents.addView(makeMainPageContent(post))
+            main_page_inner_layout_contents.addView(makeMainPageContent(post, logInedUser))
         }
     }
 
@@ -129,7 +131,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ResourceAsColor")
-    private fun makeMainPageContent(post: Post) : LinearLayout {
+    private fun makeMainPageContent(post: Post, logInedUser: User) : LinearLayout {
         val entire_layout = LinearLayout(this)
         entire_layout.orientation = LinearLayout.VERTICAL
         val main_page_layout_post_image = LinearLayout(this)
@@ -167,10 +169,6 @@ class MainActivity : AppCompatActivity() {
 
         scaleAnimation.interpolator = boundInterpolator
 
-//        ic_like.buttonTintList = resources.getColorStateList(R.color.button)
-//        ic_like.compoundDrawables.first().setTint(R.color.button)
-//        ic_like.backgroundTintList = ColorStateList.valueOf(R.color.button)
-//        ic_like.backgroundTintList = resources.getColorStateList(R.color.button)
         ic_like.backgroundTintList = resources.getColorStateList(R.color.button, null)
         ic_like.transitionName = "tb_like"
         ic_like.setBackgroundResource(R.drawable.main_page_sel_like)
@@ -195,9 +193,9 @@ class MainActivity : AppCompatActivity() {
 //        ic_like.setBackgroundColor(R.attr.colorImageView)
 //        ic_like.setBackgroundColor(R.color.image_view)
 
-        // like button clicklistner
+        // click like button
         ic_like.setOnCheckedChangeListener { compoundButton, isChecked ->
-            Log.d("like button", "isChecked = ${isChecked}")
+//            Log.d("like button", "isChecked = ${isChecked}")
             for ((likeIndex, like) in post.likes.withIndex()) {
                 if(like.checkedUser.id == logInedUser.id) {
                     post.likes.removeAt(likeIndex)
@@ -222,11 +220,6 @@ class MainActivity : AppCompatActivity() {
 //       click comment (to DetailActivity)
         ic_comment.setOnClickListener {
             // 디테일 페이지로 post 전송(댓글버튼 클릭)
-//            val intent_to_test = Intent(this, TestActivity::class.java)
-//            intent_to_test.putExtra("post", post)
-//            intent_to_test.putExtra("from", "ic_comment")
-//            intent_to_test.putExtra("content", post.content)
-
             val options = ActivityOptions.makeSceneTransitionAnimation(
                 this,
                 Pair.create(image_view_post, "iv_main_image"),
@@ -234,12 +227,12 @@ class MainActivity : AppCompatActivity() {
                 Pair.create(ic_comment, "iv_comment"),
                 Pair.create(content, "tv_content"),
             )
-//            startActivity(intent_to_test, options.toBundle())
-//            overridePendingTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out)
-//            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out, Color.TRANSPARENT)
 
             val intentToDetail = Intent(this, DetailActivity::class.java)
-            startActivity(intentToDetail)
+            intentToDetail.putExtra("loginedUser", logInedUser)
+            intentToDetail.putExtra("post", post)
+            intentToDetail.putExtra("from", "ic_comment")
+            startActivity(intentToDetail, options.toBundle())
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 
         }
@@ -286,13 +279,12 @@ class MainActivity : AppCompatActivity() {
 
 
             // click image (to DetailActivity)
-//            val intent_to_test = Intent(this, TestDetailActivity::class.java)
-//            Toast.makeText(this, post.toString(), Toast.LENGTH_SHORT).show()
-//            intent_to_test.putExtra("post", post)
-//            intent_to_test.putExtra("from", "image")
-//            intent_to_test.putExtra("content", post.content)
-//
-//            startActivity(intent_to_test, options.toBundle())
+            val intentToDetail = Intent(this, DetailActivity::class.java)
+            intentToDetail.putExtra("post", post)
+            intentToDetail.putExtra("from", "image")
+            intentToDetail.putExtra("loginedUser", logInedUser)
+
+            startActivity(intentToDetail, options.toBundle())
 
             // API version less than 33
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)

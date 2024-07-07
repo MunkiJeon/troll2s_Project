@@ -11,11 +11,11 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
     init{
 
         //TODO: Intro 추가
-        val jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname", profileImageResource = R.drawable.profile02)
-        val jiwon = User("shin", "1234","신지원", "jiwon's nickname", profileImageResource = R.drawable.profile04)
-        val mun = User("jeon", "1234","전문기", "munki's nickname", profileImageResource = R.drawable.profile03)
-        val rian = User("kim", "1234","김리안", "rian's nickname", profileImageResource = R.drawable.profile01)
-        val seungmo = User("seong", "1234","성승모", "seungmo's nickname", profileImageResource = R.drawable.profile05)
+        val jaeseon = User("yoo", "12345678","유재선", "jaeseon's nickname", profileImageResource = R.drawable.profile02)
+        val jiwon = User("shin", "12345678","신지원", "jiwon's nickname", profileImageResource = R.drawable.profile04)
+        val mun = User("jeon", "12345678","전문기", "munki's nickname", profileImageResource = R.drawable.profile03)
+        val rian = User("kim", "12345678","김리안", "rian's nickname", profileImageResource = R.drawable.profile01)
+        val seungmo = User("seong", "12345678","성승모", "seungmo's nickname", profileImageResource = R.drawable.profile05)
 
 //        users = mutableListOf(jaeseon, jiwon, moonki, rian, seungmo)
         users.add(jaeseon)
@@ -56,7 +56,6 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
         val like5_2 = Like(mun)
         val like5_3 = Like(jiwon)
 
-//        val logInedUser = jaeseon
 
         val panni = Youtuber("panni", "1234", "빠니보틀", "panni", profileIcon = R.drawable.panni_bottle_profile_image)
         val kwack = Youtuber("kwack", "1234", "곽튜브", "kwack",profileIcon = R.drawable.kwack_profile_image)
@@ -142,6 +141,9 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
         comments.add(comment4_1)
         comments.add(comment4_2)
         comments.add(comment4_3)
+        comments.add(comment5_1)
+        comments.add(comment5_2)
+        comments.add(comment5_3)
 
 
         youtuberToPosts[panni] = mutableListOf(post_panni1, post_panni2,post_panni3,post_panni4,post_panni5,post_panni6)
