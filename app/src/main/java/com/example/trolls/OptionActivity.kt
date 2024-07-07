@@ -126,10 +126,6 @@ class OptionActivity : AppCompatActivity() {
                 fontBox.animate().setDuration(200).rotation(180f)
             }
         }
-
-        //TODO: Add this to MainActivity.onCreate
-        //val appLocale = LocaleListCompat.forLanguageTags("ko")
-        //AppCompatDelegate.setApplicationLocales(appLocale)
     }
 
     private fun setDetailBoxClickListener() {
@@ -155,19 +151,10 @@ class OptionActivity : AppCompatActivity() {
         }
 
         fontSizeNormalBtn.setOnClickListener {
-//            val settings = getSharedPreferences("preference", Context.MODE_PRIVATE)
-//            settings.edit().apply {
-//                putString("font_size", FontSize.Normal.name)
-//            }.apply()
-
             adjustFontSize(FontSize.Normal)
             recreate()
         }
         fontSizeLargeBtn.setOnClickListener {
-//            val settings = getSharedPreferences("preference", Context.MODE_PRIVATE)
-//            settings.edit().apply {
-//                putString("font_size", FontSize.Large.name)
-//            }.apply()
             adjustFontSize(FontSize.Large)
             recreate()
         }
@@ -195,28 +182,5 @@ class OptionActivity : AppCompatActivity() {
         metrics.scaledDensity = configuration.fontScale * metrics.density
 
         baseContext.resources.updateConfiguration(configuration, metrics)
-    }
-    private fun adjustFontSize(context: Context): Context {
-        val settings = getSharedPreferences("preference", MODE_PRIVATE)
-        val fontSizePref = settings.getString("font_size", FontSize.Normal.name)
-
-        val configuration= this.resources.configuration
-        val scale = when(fontSizePref) {
-            FontSize.Normal.name -> 1.0f
-            FontSize.Large.name -> 1.2f
-            else -> throw Exception()
-        }
-
-
-        configuration.fontScale = scale
-
-        //TODO: deprecated 된거 바꾸기
-        val metrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(metrics)
-        metrics.scaledDensity = configuration.fontScale * metrics.density
-
-        baseContext.resources.updateConfiguration(configuration, metrics);
-
-        return context.createConfigurationContext(configuration)
     }
 }

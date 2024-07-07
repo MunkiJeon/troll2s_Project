@@ -7,6 +7,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -21,14 +23,16 @@ class SignInActivity : AppCompatActivity() {
             insets
         }
 
+        val appLocale = LocaleListCompat.forLanguageTags("ko")
+        AppCompatDelegate.setApplicationLocales(appLocale)
+
         var singin_password_putin_et = findViewById<EditText>(R.id.singin_password_putin_et)
         val singin_btn = findViewById<Button>(R.id.singin_btn)
         val singin_join_btn = findViewById<Button>(R.id.singin_join_btn)
         var singin_idinput_et = findViewById<EditText>(R.id.singin_idinput_et)
 
         singin_btn.setOnClickListener {
-            if (singin_idinput_et.text.isEmpty() || singin_password_putin_et.text.isEmpty()||singin_password_putin_et.text.length !in 14..21
-                || singin_idinput_et.text.length !in 6..24)
+            if (singin_idinput_et.text.isEmpty() || singin_password_putin_et.text.isEmpty()||singin_idinput_et.text.length !in 6..24)
                 Toast.makeText(this, "확인 후 로그인 바랍니다", Toast.LENGTH_SHORT).show()
             else {
                 Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show()

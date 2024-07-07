@@ -34,6 +34,8 @@ class SignUpActivity: AppCompatActivity() {
             if (singup_nickid_tv.text.isEmpty() || sinup_password_input_tv.text.isEmpty() || editTextTextEmailAddress.text.isEmpty()
                 || sinup_password_input_tv.text.length !in 6..24) {
                 Toast.makeText(this, "정확한 정보가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
+            } else if(sinup_password_input_tv.text.length !in 6..24) {
+                Toast.makeText(this, "비밀번호 설정을 확인해주세요(6~24자 이내)", Toast.LENGTH_SHORT).show()
             } else if (singup_all_checkedbox_btn.isChecked.not()) {
                 Toast.makeText(this, "체크박스를 클릭해주세요", Toast.LENGTH_SHORT).show()
             } else {
@@ -42,13 +44,7 @@ class SignUpActivity: AppCompatActivity() {
                 val it_singup = Intent(this, SignUpOkActivity::class.java)
                 it_singup.putExtra("USEREMALL",editTextTextEmailAddress.text.toString())
                 startActivity(it_singup)
-            }
-
-
-            if (sinup_password_input_tv.text.length in 16..24)
-                Toast.makeText(this, "사용가능한 비밀번호 입니다", Toast.LENGTH_SHORT).show()
-            else {
-                Toast.makeText(this, "비밀번호 설정을 확인해주세요(6~24자 이내)", Toast.LENGTH_SHORT).show()
+                finish()
             }
 
 
