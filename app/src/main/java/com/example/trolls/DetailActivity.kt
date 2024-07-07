@@ -4,7 +4,6 @@ import Comment
 import Dummy
 import Like
 import Post
-import User
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -36,13 +35,6 @@ class DetailActivity : AppCompatActivity() {
 
     val dummy = Dummy()
 
-
-
-    // sample data 선언
-    val posts = dummy.posts
-    val likes = dummy.likes
-    val comments = dummy.comments
-
     val loginedUser = dummy.users[0]
 
     // 지우면 안되는 변수들
@@ -64,7 +56,7 @@ class DetailActivity : AppCompatActivity() {
         // -----------------------------------------------------------------------------------------------------------------------
 
         // 필요한 변수들 선언
-        val post1 = intent.getParcelableExtra<Post>("post")?:dummy.posts[0]
+        val post = intent.getParcelableExtra<Post>("post")?:dummy.posts[0]
 
 
         // 레이아웃
@@ -86,7 +78,7 @@ class DetailActivity : AppCompatActivity() {
         detailBtnLike = findViewById<ImageButton>(R.id.detail_btn_like).apply {
             // 버튼 셋팅
             // 로그인한 유저가 이미 좋아요를 눌렀다면 ic_like_full 리소스를 세팅하고, 누르지 않았다면 ic_like_full로 리소스 셋팅
-            if (post1.likes.contains(Like(loginedUser))) {
+            if (post.likes.contains(Like(loginedUser))) {
                 setImageResource(R.drawable.ic_like_full)
 
                 // 클릭했는지 확인하는 변수
@@ -124,16 +116,16 @@ class DetailActivity : AppCompatActivity() {
         // 글을 쓴 사람의 프로필 셋팅
         // 프로필 이미지 셋팅 / 동그랗게 만듦
         Glide.with(detailIvProfileImg)
-            .load(post1.writerUser.profileImageResource)
+            .load(post.writerUser.profileImageResource)
             .apply(RequestOptions.circleCropTransform())
             .into(detailIvProfileImg)
 
         // 닉네임 셋팅
-        detailProfileNickname.text = post1.writerUser.nickname
+        detailProfileNickname.text = post.writerUser.nickname
 
         // 글의 이미지와 내용 셋팅
-        detailIvPostImg.setImageResource(post1.imageResource)
-        detailTvContent.text = post1.content
+        detailIvPostImg.setImageResource(post.imageResource)
+        detailTvContent.text = post.content
 
         // 댓글 작성란 셋팅
         // 로그인한 유저의 프로필 이미지 셋팅
@@ -143,12 +135,12 @@ class DetailActivity : AppCompatActivity() {
             .into(detailIvCommentProfileImg)
 
         // 좋아요 목록 부분 텍스트 셋팅
-        showLikers(detailLikers, post1)
+        showLikers(detailLikers, post)
 
         // 댓글 리스트 안에 있는 요소들을 동적으로 추가하는 로직
-        post1.comments.forEach {
+        post.comments.forEach {
             // 댓글 레이아웃을 추가하는 함수
-            addCommentLayout(it, post1)
+            addCommentLayout(it, post)
         }
 
         // -----------------------------------------------------------------------------------------------------------------------
@@ -210,7 +202,7 @@ class DetailActivity : AppCompatActivity() {
         changedBtnColor(detailEtCommentBox)
 
         // 댓글을 작성하고 submit 버튼을 누르면 댓글이 추가되는 함수
-        setSubmitButtonListenerForNewComment(post1)
+        setSubmitButtonListenerForNewComment(post.)
 
         // 좋아요 버튼 클릭 리스너
         // 좋아요 버튼이 이미 눌렸으면 클릭 취소를 해야하므로 해당 글의 좋아요 목록에서 삭제 후, 이미지 리소스 변경
@@ -218,11 +210,11 @@ class DetailActivity : AppCompatActivity() {
         detailBtnLike.setOnClickListener {
             if (isClick) {
                 detailBtnLike.setImageResource(R.drawable.ic_like)
-                post1.likes.remove(Like(loginedUser))
+                post.likes.remove(Like(loginedUser))
                 isClick = false
             } else {
                 detailBtnLike.setImageResource(R.drawable.ic_like_full)
-                post1.likes.add(Like(loginedUser))
+                post.likes.add(Like(loginedUser))
                 isClick = true
             }
         }
@@ -413,22 +405,22 @@ class DetailActivity : AppCompatActivity() {
      * @param view : 좋아요를 누가 눌렀는지 보여주는 텍스트뷰
      * @author 신지원
      */
-    fun showLikers(view: TextView, post1: Post) {
+    fun showLikers(view: TextView, post: Post) {
 
         // 해당 글의 좋아요 리스트가 비어있지 않다면
-        if (post1.likes.isNotEmpty()) {
+        if (post.likes.isNotEmpty()) {
             when {
 
                 // 사이즈가 1이라면
-                post1.likes.size == 1 -> {
+                post.likes.size == 1 -> {
                     view.visibility = View.VISIBLE
-                    view.text = "${post1.likes.iterator().next().checkedUser.nickname}님이 좋아합니다"
+                    view.text = "${post.likes.iterator().next().checkedUser.nickname}님이 좋아합니다"
                 }
 
                 // 사이즈가 1 초과라면
                 else -> {
                     view.visibility = View.VISIBLE
-                    view.text = "${post1.likes.iterator().next().checkedUser.nickname}님 외 여러명이 좋아합니다"
+                    view.text = "${post.likes.iterator().next().checkedUser.nickname}님 외 여러명이 좋아합니다"
                 }
             }
         } else { // 해당 글의 좋아요가 비어있다면
@@ -476,7 +468,7 @@ class DetailActivity : AppCompatActivity() {
      *
      * @author 신지원
      */
-    fun setSubmitButtonListenerForNewComment(post: Post) {
+    fun setSubmitButtonListenerForNewComment(comment: Comment) {
 
         // detailEtCommentBox의 힌트를 셋팅
         detailEtCommentBox.hint = "댓글을 작성해주세요"
