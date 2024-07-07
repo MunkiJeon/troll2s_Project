@@ -12,4 +12,15 @@
     <string name="change_font_size_large">Large</string>
     <string name="change_font_a">Font A</string>
     <string name="change_font_b">Font B</string>
+    <string name="mypage_title">My Page</string>
+    <string name="mypage_myid">ID</string>
+    <string name="mypage_myname">name</string>
+    <string name="mypage_nickname">NickName</string>
+    <string name="mypage_btn_profilechange">Change profile</string>
+    <string name="mypage_intro_title">introduction</string>
+    <string name="mypage_intro_hint">Please write an introduction.</string>
+    <string name="mypage_mypost">My Post</string>
+    <string name="mypage_likes">Likes</string>
+    <string name="editpage_tv_optionstitle">Please select the image you want to change.</string>
+    <string name="mypage_main">Main</string>
 </resources>

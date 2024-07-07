@@ -7,6 +7,8 @@
 
     <attr name="colorDivider" format="color"/>
 
+    <attr name="colorImageView" format="color"/>
+
     <attr name="sizeTitleText" format="dimension" />
     <attr name="sizeSubtitleText" format="dimension" />
     <attr name="sizeBodyText" format="dimension" />
