@@ -40,6 +40,7 @@ class SignInActivity : AppCompatActivity() {
                     this, MainActivity::class.java)
                 it_singin.putExtra("USERINFO",singin_idinput_et.text.toString())
                 startActivity (it_singin)
+                finish()
             }
 
 
@@ -54,7 +55,6 @@ class SignInActivity : AppCompatActivity() {
         singin_join_btn.setOnClickListener {
             val it_singin = Intent(this, SignUpActivity::class.java)
             startActivity(it_singin)
-
         }
 
 
