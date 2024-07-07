@@ -4,10 +4,14 @@ import Comment
 import Dummy
 import Like
 import Post
+import User
+import android.app.ActivityOptions
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Pair
 import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,6 +21,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -29,13 +34,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class DetailActivity : AppCompatActivity() {
-    // 임시로 post1로 설정
-    // 재선님 페이지와 연결하면 재선님 페이지에서 해당 포스트와 로그인한 유저를 받아와서 post1 부분을 받아온 데이터로 바꿔야함
-
-
-    val dummy = Dummy()
-
-    val loginedUser = dummy.users[0]
 
     // 지우면 안되는 변수들
     lateinit var parentLayout: LinearLayout
@@ -44,10 +42,10 @@ class DetailActivity : AppCompatActivity() {
     lateinit var detailBtnLike: ImageButton
     lateinit var detailSv: NestedScrollView
     lateinit var imm: InputMethodManager
+    lateinit var post: Post
+    lateinit var loginedUser: User
     val commentLayouts = mutableListOf<View>()
     var isClick = false
-    lateinit var post: Post
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +55,20 @@ class DetailActivity : AppCompatActivity() {
         // -----------------------------------------------------------------------------------------------------------------------
 
         // 필요한 변수들 선언
-        post = intent.getParcelableExtra<Post>("post")?:dummy.posts[0]
+        if (intent.getStringExtra("from") == "ic_comment") {
+            // 댓글 게시 버튼 눌렀을 때 댓글 추가하는 로직
+            // 키보드를 보여줌
+            imm.showSoftInput(detailEtCommentBox, InputMethodManager.SHOW_IMPLICIT)
 
+            // detailEtCommentBox에 텍스트가 입력되면 submit 버튼 부분의 색깔이 바뀌는 코드
+            changedBtnColor(detailEtCommentBox)
+
+            // 댓글을 작성하고 submit 버튼을 누르면 댓글이 추가되는 함수
+            setSubmitButtonListenerForNewComment()
+        }
+
+        post = intent.getParcelableExtra<Post>("post")?:Dummy().posts[0]
+        loginedUser = Dummy().users.get(0)
 
         // 레이아웃
         val mainLayout = findViewById<ConstraintLayout>(R.id.main)
@@ -109,8 +119,14 @@ class DetailActivity : AppCompatActivity() {
         // 키보드를 제어하기 위한 변수
         imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
+        val image_view_post = ImageView(this)
+        val ic_comment = ImageView(this)
+        val ic_like = ToggleButton(this)
+        val content = TextView(this)
 
         // -----------------------------------------------------------------------------------------------------------------------
+
+
 
         // 메인 화면에서 받아온 데이터 셋팅
 
@@ -136,7 +152,7 @@ class DetailActivity : AppCompatActivity() {
             .into(detailIvCommentProfileImg)
 
         // 좋아요 목록 부분 텍스트 셋팅
-        showLikers(detailLikers, post)
+        showLikers(detailLikers)
 
         // 댓글 리스트 안에 있는 요소들을 동적으로 추가하는 로직
         post.comments.forEach {
@@ -212,10 +228,12 @@ class DetailActivity : AppCompatActivity() {
             if (isClick) {
                 detailBtnLike.setImageResource(R.drawable.ic_like)
                 post.likes.remove(Like(loginedUser))
+                showLikers(detailLikers)
                 isClick = false
             } else {
                 detailBtnLike.setImageResource(R.drawable.ic_like_full)
                 post.likes.add(Like(loginedUser))
+                showLikers(detailLikers)
                 isClick = true
             }
         }
@@ -406,7 +424,7 @@ class DetailActivity : AppCompatActivity() {
      * @param view : 좋아요를 누가 눌렀는지 보여주는 텍스트뷰
      * @author 신지원
      */
-    fun showLikers(view: TextView, post: Post) {
+    fun showLikers(view: TextView) {
 
         // 해당 글의 좋아요 리스트가 비어있지 않다면
         if (post.likes.isNotEmpty()) {
@@ -415,13 +433,13 @@ class DetailActivity : AppCompatActivity() {
                 // 사이즈가 1이라면
                 post.likes.size == 1 -> {
                     view.visibility = View.VISIBLE
-                    view.text = "${post.likes.iterator().next().checkedUser.nickname}님이 좋아합니다"
+                    view.text = "${post.likes.get(0).checkedUser.nickname}님이 좋아합니다"
                 }
 
                 // 사이즈가 1 초과라면
                 else -> {
                     view.visibility = View.VISIBLE
-                    view.text = "${post.likes.iterator().next().checkedUser.nickname}님 외 여러명이 좋아합니다"
+                    view.text = "${post.likes.get(0).checkedUser.nickname}님 외 여러명이 좋아합니다"
                 }
             }
         } else { // 해당 글의 좋아요가 비어있다면

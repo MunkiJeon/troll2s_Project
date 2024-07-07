@@ -165,6 +165,7 @@ class MyPageActivity : AppCompatActivity() {
             circleView.setImageResource(post.imageResource) // drawable id
             circleView.setOnClickListener {
 //                postIntent.putExtra("IMG", post.imageResource)
+                postIntent.putExtra("activity from", "MyPage")
                 postIntent.putExtra("post", post)
                 startActivity(postIntent)
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
