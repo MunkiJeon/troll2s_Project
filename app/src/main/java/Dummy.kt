@@ -63,7 +63,7 @@ class Dummy(val youtuberToPosts: MutableMap<Youtuber, MutableList<Post>> = mutab
         val wonji = Youtuber("wonji", "1234", "원지", "wonji", profileIcon = R.drawable.wonji_profile_image)
         val soy = Youtuber("soy", "1234", "쏘이", "soy", profileIcon = R.drawable.soy_profile_image)
 
-        val post_panni1 = Post(R.drawable.post_main_image_panni1, "빠니보틀 제목1","본명 박재한. 1987년생. 현재 207만 명 구독자를 보유한 여행 유튜버로 현재 대한민국 여행 유튜버 구독자 수 1위다. 오지 탐험, 전쟁 폐허 탐방 등 그야말로 살아있는 여행 이야기를 전한다. 2015년 3월부터 여행 관련 영상을 올렸으며 웹드라마 <좋좋소>, <찐따록: 인간 곽준빈>의 연출, 극본을 맡아 PD로 활동하기도 했다.", jaeseon, panni, likes = mutableListOf(Like()))
+        val post_panni1 = Post(R.drawable.post_main_image_panni1, "빠니보틀 제목1","본명 박재한. 1987년생. 현재 207만 명 구독자를 보유한 여행 유튜버로 현재 대한민국 여행 유튜버 구독자 수 1위다. 오지 탐험, 전쟁 폐허 탐방 등 그야말로 살아있는 여행 이야기를 전한다. 2015년 3월부터 여행 관련 영상을 올렸으며 웹드라마 <좋좋소>, <찐따록: 인간 곽준빈>의 연출, 극본을 맡아 PD로 활동하기도 했다.", jaeseon, panni, likes = mutableListOf(Like(jaeseon)))
         val post_panni2 = Post(R.drawable.post_main_image_panni2, "빠니보틀 제목2","빠니보틀이 여행은 자유롭다. 근데 특별하다. 기존에 TV에서 보던 여행 콘텐츠와는 확연하게 다르다. 남들이 가지 않은 곳, 알려지지 않은 곳을 여행하고 현지인과도 자연스럽게 소통하고 녹아든다. 빠니보틀 영상 중에 가장 유명한 건 ‘인도 기차 1등칸과 꼴등칸 비교체험’이다. 4년 전 영상이고 무려 753만 회 조회수를 기록 중이다.", jaeseon, panni)
         val post_panni3 = Post(R.drawable.post_main_image_panni3, "빠니보틀 제목3","여행 유튜브 채널은 많다. 그럼에도 빠니보틀 콘텐츠를 보는 이유가 있다. 색깔이 뚜렷하다. 대부분 브이로그나 여행지를 보여주며 설명하는 콘텐츠라면 빠니보틀 영상은 직접 여행하는 느낌이 든다. ", jaeseon, panni)
         val post_panni4 = Post(R.drawable.post_main_image_panni4, "빠니보틀 제목4","MBC <태어난 김에 세계일주> 시리즈에 빠니보틀이 합류하면서 분위기가 확 바뀌었다. 그가 합류하기 전까지는 기존 여행 예능에 가까웠는데 그 틀을 깨버린 것이다. 기안84의 영어 표현을 고쳐주거나 돈을 펑펑 쓰는 지갑을 압수하는 등 인간적인 모습은 물론 재미있는 장면도 많이 나왔다.", jiwon, panni)

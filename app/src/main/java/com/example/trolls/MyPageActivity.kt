@@ -164,7 +164,8 @@ class MyPageActivity : AppCompatActivity() {
             val circleView = CircleImageView(this)
             circleView.setImageResource(post.imageResource) // drawable id
             circleView.setOnClickListener {
-                postIntent.putExtra("IMG", post.imageResource)
+//                postIntent.putExtra("IMG", post.imageResource)
+                postIntent.putExtra("post", post)
                 startActivity(postIntent)
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
