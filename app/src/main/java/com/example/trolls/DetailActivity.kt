@@ -46,6 +46,7 @@ class DetailActivity : AppCompatActivity() {
     lateinit var imm: InputMethodManager
     val commentLayouts = mutableListOf<View>()
     var isClick = false
+    lateinit var post: Post
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,7 @@ class DetailActivity : AppCompatActivity() {
         // -----------------------------------------------------------------------------------------------------------------------
 
         // 필요한 변수들 선언
-        val post = intent.getParcelableExtra<Post>("post")?:dummy.posts[0]
+        post = intent.getParcelableExtra<Post>("post")?:dummy.posts[0]
 
 
         // 레이아웃
@@ -84,7 +85,7 @@ class DetailActivity : AppCompatActivity() {
                 // 클릭했는지 확인하는 변수
                 isClick = true
             } else {
-                setImageResource(R.drawable.ic_like_full)
+                setImageResource(R.drawable.ic_like)
                 isClick = false
             }
         }
@@ -140,7 +141,7 @@ class DetailActivity : AppCompatActivity() {
         // 댓글 리스트 안에 있는 요소들을 동적으로 추가하는 로직
         post.comments.forEach {
             // 댓글 레이아웃을 추가하는 함수
-            addCommentLayout(it, post)
+            addCommentLayout(it)
         }
 
         // -----------------------------------------------------------------------------------------------------------------------
@@ -202,7 +203,7 @@ class DetailActivity : AppCompatActivity() {
         changedBtnColor(detailEtCommentBox)
 
         // 댓글을 작성하고 submit 버튼을 누르면 댓글이 추가되는 함수
-        setSubmitButtonListenerForNewComment(post.)
+        setSubmitButtonListenerForNewComment()
 
         // 좋아요 버튼 클릭 리스너
         // 좋아요 버튼이 이미 눌렸으면 클릭 취소를 해야하므로 해당 글의 좋아요 목록에서 삭제 후, 이미지 리소스 변경
@@ -238,10 +239,10 @@ class DetailActivity : AppCompatActivity() {
             val bottomSheetLayout = bottomSheetDialog.findViewById<LinearLayout>(R.id.bottom_sheet_like_lo_list)
 
             // 좋아요 목록이 비어있지 않다면
-            if (likes.isNotEmpty()) {
+            if (post.likes.isNotEmpty()) {
 
                 // 좋아요 목록 순회, 좋아요 목록에 있는 좋아요 객체를 하나씩 꺼내옴
-                likes.forEach { like ->
+                post.likes.forEach { like ->
 
                     // 좋아요 레이아웃 인플레이트
                     val likeLayout =
@@ -295,7 +296,7 @@ class DetailActivity : AppCompatActivity() {
      * @param comment : 추가할 댓글 객체
      * @author 신지원
      */
-    fun addCommentLayout(comment: Comment, post1: Post) {
+    fun addCommentLayout(comment: Comment) {
 
         // 부모뷰에 추가할 댓글 레이아웃
         val commentLayout = layoutInflater.inflate(R.layout.layout_comment_list, null)
@@ -390,7 +391,7 @@ class DetailActivity : AppCompatActivity() {
                 }
 
                 // 글의 댓글 리스트에서 해당 댓글 삭제
-                post1.comments.remove(comment)
+                post.comments.remove(comment)
             }
         } else { // 로그인한 유저와 해당 댓글을 작성한 유저가 같지 않으면
 
@@ -468,7 +469,7 @@ class DetailActivity : AppCompatActivity() {
      *
      * @author 신지원
      */
-    fun setSubmitButtonListenerForNewComment(comment: Comment) {
+    fun setSubmitButtonListenerForNewComment() {
 
         // detailEtCommentBox의 힌트를 셋팅
         detailEtCommentBox.hint = "댓글을 작성해주세요"
@@ -479,7 +480,7 @@ class DetailActivity : AppCompatActivity() {
             if (detailEtCommentBox.text.isNotEmpty()) {
 
                 // 댓글 레이아웃을 추가하는 함수 (댓글 객체에 detailEtCommentBox의 텍스트와 로그인 유저를 담아 넘김)
-                addCommentLayout(Comment(detailEtCommentBox.text.toString(), loginedUser), post)
+                addCommentLayout(Comment(detailEtCommentBox.text.toString(), loginedUser))
 
                 // 댓글을 작성하고 submit 버튼을 눌렀을 때 detailEtCommentBox의 텍스트를 비워줌
                 detailEtCommentBox.text = null
