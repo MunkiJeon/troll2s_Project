@@ -12,4 +12,5 @@ data class Post(var id: Int,
            val writerUser: User,
            val youtuber: Youtuber = Youtuber("panni", "1234", "빠니보틀", "panni",  profileIcon = 1),
            val comments: MutableList<Comment> = mutableListOf(),
-           val likes: MutableList<Like> = mutableListOf()) : Parcelable
+           val likes: MutableList<Like> = mutableListOf()
+) : Parcelable
