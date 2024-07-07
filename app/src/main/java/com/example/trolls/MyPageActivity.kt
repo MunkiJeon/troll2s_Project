@@ -1,6 +1,7 @@
 package com.example.trolls
 
 import Comment
+import Dummy
 import Like
 import Post
 import User
@@ -28,6 +29,8 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 
 class MyPageActivity : AppCompatActivity() {
+    private val dummy = Dummy()
+
     /**
      * 더미 데이터 정의
      */
@@ -91,21 +94,24 @@ class MyPageActivity : AppCompatActivity() {
     // 소개말 설정 부분
     private lateinit var mypage_tv_intro: TextView
 
-    //내가 작성한 글
-    private var posts = mutableListOf(
-        post_panni1,
-        post_panni2,
-        post_kwack1,
-        post_kwack2,
-    )
+    private val posts = dummy.posts
+    private val likes = dummy.likes
 
-    //내가 좋아요한 글
-    private var likes = mutableListOf(
-        like1_1, like1_2, like1_3,
-        like2_1, like2_2, like2_3,
-        like3_1, like3_2, like3_3,
-        like4_1, like4_2, like4_3,
-        like5_1, like5_2, like5_3,)
+    //내가 작성한 글
+//    private var posts = mutableListOf(
+//        post_panni1,
+//        post_panni2,
+//        post_kwack1,
+//        post_kwack2,
+//    )
+//
+//    //내가 좋아요한 글
+//    private var likes = mutableListOf(
+//        like1_1, like1_2, like1_3,
+//        like2_1, like2_2, like2_3,
+//        like3_1, like3_2, like3_3,
+//        like4_1, like4_2, like4_3,
+//        like5_1, like5_2, like5_3,)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //메인화면에서 불러온 데이터 셋팅
@@ -182,7 +188,7 @@ class MyPageActivity : AppCompatActivity() {
             circleView.setOnClickListener{
                 likeIntent.putExtra("LIKE", like.checkedUser)
                 likeIntent.putExtra("TARGET","like")
-                    startActivity(likeIntent)
+                startActivity(likeIntent)
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
             val circleView_params = LinearLayout.LayoutParams(

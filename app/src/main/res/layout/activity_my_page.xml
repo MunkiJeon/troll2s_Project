@@ -95,7 +95,7 @@
                         android:layout_margin="16dp"
 
                         android:scaleType="fitCenter"
-                        android:src="@drawable/dummy_image02"
+                        android:src="@drawable/no_image"
 
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
