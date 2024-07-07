@@ -1,21 +1,24 @@
 package com.example.trolls
 
 import Comment
+import Dummy
 import Like
 import Post
 import User
 import Youtuber
+import android.annotation.SuppressLint
+import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.util.Pair
 import android.util.TypedValue
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
 import android.view.animation.ScaleAnimation
 import android.widget.Button
-import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -31,80 +34,15 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class MainActivity : AppCompatActivity() {
 
-   /* val youtuberToPosts = mutableMapOf<Youtuber, MutableList<Post>>()
-    val youtubers = mutableListOf<Youtuber>()
-    val posts = mutableListOf<Post>()
 
-    //TODO: Intro 추가
-    val jaeseon = User("yoo", "1234","유재선", "jaeseon's nickname")
-    val jiwon = User("shin", "1234","신지원", "jiwon's nickname")
-    val moonki = User("jeon", "1234","전문기", "moonki's nickname")
-    val rian = User("kim", "1234","김리안", "rian's nickname")
-    val seungmo = User("seong", "1234","성승모", "seungmo's nickname")
-
-    val comment1_1 = Comment("댓글입니다1_1", jaeseon)
-    val comment1_2 = Comment("댓글입니다1_2", jaeseon)
-    val comment1_3 = Comment("댓글입니다1_3", jaeseon)
-    val comment2_1 = Comment("댓글입니다2_1", jiwon)
-    val comment2_2 = Comment("댓글입니다2_2", jiwon)
-    val comment2_3 = Comment("댓글입니다2_3", jiwon)
-    val comment3_1 = Comment("댓글입니다3_1", moonki)
-    val comment3_2 = Comment("댓글입니다3_2", moonki)
-    val comment3_3 = Comment("댓글입니다3_3", moonki)
-    val comment4_1 = Comment("댓글입니다4_1", seungmo)
-    val comment4_2 = Comment("댓글입니다4_2", seungmo)
-    val comment4_3 = Comment("댓글입니다4_3", seungmo)
-    val comment5_1 = Comment("댓글입니다5_1", rian)
-    val comment5_2 = Comment("댓글입니다5_2", rian)
-    val comment5_3 = Comment("댓글입니다5_3", rian)
-
-    val like1_1 = Like(jaeseon)
-    val like1_2 = Like(jiwon)
-    val like1_3 = Like(moonki)
-    val like2_1 = Like(jaeseon)
-    val like2_2 = Like(jiwon)
-    val like2_3 = Like(moonki)
-    val like3_1 = Like(moonki)
-    val like3_2 = Like(seungmo)
-    val like3_3 = Like(rian)
-    val like4_1 = Like(seungmo)
-    val like4_2 = Like(rian)
-    val like4_3 = Like(moonki)
-    val like5_1 = Like(rian)
-    val like5_2 = Like(moonki)
-    val like5_3 = Like(jiwon)
-
-    val logInedUser = jaeseon
-
-    val panni = Youtuber("panni", "1234", "빠니보틀", "panni", profileIcon = R.drawable.panni_bottle_profile_image)
-    val kwack = Youtuber("kwack", "1234", "곽튜브", "kwack",profileIcon = R.drawable.kwack_profile_image)
-    val wonji = Youtuber("wonji", "1234", "원지", "wonji", profileIcon = R.drawable.wonji_profile_image)
-    val soy = Youtuber("soy", "1234", "쏘이", "soy", profileIcon = R.drawable.soy_profile_image)
-
-    val post_panni1 = Post(1, R.drawable.post_main_image_panni1, "빠니보틀 제목1","빠니보틀 본문1", jaeseon, panni, likes = mutableListOf(Like()))
-    val post_panni2 = Post(2, R.drawable.post_main_image_panni2, "빠니보틀 제목2","빠니보틀 본문2", jaeseon, panni)
-    val post_kwack1 = Post(3, R.drawable.post_main_image_kwack2, "곽튜브 제목1","곽튜브 본문2", jaeseon, kwack)
-    val post_kwack2 = Post(4, R.drawable.post_main_image_kwack1, "곽튜브 제목2","곽튜브 본문2", jaeseon, kwack)
+    private val dummy = Dummy()
+    private val logInedUser = dummy.users[1]
+    private val posts = dummy.posts
+    private val youtubers = dummy.youtubers
+    private val youtuberToPosts = dummy.youtuberToPosts
 
 
-    init{
-        posts.add(post_panni1)
-        posts.add(post_panni2)
-        posts.add(post_kwack1)
-        posts.add(post_kwack2)
-
-
-        youtuberToPosts[panni] = mutableListOf(post_panni1, post_panni2)
-        youtuberToPosts[kwack] = mutableListOf(post_kwack1, post_kwack2)
-        youtubers.add(panni)
-        youtubers.add(kwack)
-        youtubers.add(wonji)
-        youtubers.add(soy)
-
-    }
-*/
-
-
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -115,14 +53,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-/*
         val main_page_btn_my_page = findViewById<Button>(R.id.main_page_btn_my_page)
 
         main_page_btn_my_page.setOnClickListener{
             // 마이페이지로 loginUser 전송
-//            val intent_to_My_page = Intent(this, TestMyPageActivity::class.java)
-//            intent_to_My_page.putExtra("loginUser", logInedUser)
-//            startActivity(intent_to_My_page)
+            val intent_to_My_page = Intent(this, MyPageActivity::class.java)
+            intent_to_My_page.putExtra("loginUser", logInedUser)
+            startActivity(intent_to_My_page)
         }
 
         val main_page_inner_layout_scroll_youtuber = findViewById<LinearLayout>(R.id.main_page_inner_layout_scroll_youtuber)
@@ -139,6 +76,8 @@ class MainActivity : AppCompatActivity() {
             main_page_civ_youtuber_icon.layoutParams = main_page_icon_youtuber_params
             main_page_civ_youtuber_icon.borderWidth = convertDpToPixel(0)
             main_page_civ_youtuber_icon.borderColor = ContextCompat.getColor(this, R.color.button)
+//            main_page_civ_youtuber_icon.borderColor = ContextCompat.getColor(this, R.color.image_view)
+//            main_page_civ_youtuber_icon.borderColor = resources.getColor(R.attr.colorImageView)
 
             val main_page_inner_layout_contents = findViewById<LinearLayout>(R.id.main_page_inner_layout_contents)
             main_page_inner_layout_contents.orientation = LinearLayout.VERTICAL
@@ -149,7 +88,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 main_page_civ_youtuber_icon.borderWidth = convertDpToPixel(5)
                 main_page_inner_layout_contents.removeAllViews()
-                main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
+
+
+//                main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
+                main_page_sv_contents.post{
+                    main_page_sv_contents.fullScroll(ScrollView.FOCUS_UP)
+                }
+
+
                 Toast.makeText(this, youtuber.name, Toast.LENGTH_SHORT).show()
                 val posts = when(before_selected_icon) {
                     main_page_civ_youtuber_icon -> posts
@@ -182,6 +128,7 @@ class MainActivity : AppCompatActivity() {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), this.resources.displayMetrics).toInt()
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun makeMainPageContent(post: Post) : LinearLayout {
         val entire_layout = LinearLayout(this)
         entire_layout.orientation = LinearLayout.VERTICAL
@@ -194,6 +141,11 @@ class MainActivity : AppCompatActivity() {
         main_page_layout_post_image.layoutParams = main_page_layout_post_image_params
 
         val image_view_post = ImageView(this)
+        val ic_comment = ImageView(this)
+        val ic_like = ToggleButton(this)
+        val content = TextView(this)
+
+        image_view_post.transitionName = "iv_main_image"
         val image_view_post_params = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
@@ -202,17 +154,6 @@ class MainActivity : AppCompatActivity() {
         image_view_post.setImageResource(post.imageResource)
         image_view_post.layoutParams = image_view_post_params
         main_page_layout_post_image.addView(image_view_post)
-
-        main_page_layout_post_image.setOnClickListener {
-            
-            // 디테일 페이지로 post 전송(이미지 클릭)
-//            val intent_to_test = Intent(this, TestActivity::class.java)
-//            Toast.makeText(this, post.toString(), Toast.LENGTH_SHORT).show()
-//            intent_to_test.putExtra("post", post)
-//            intent_to_test.putExtra("from", "image")
-//            startActivity(intent_to_test)
-        }
-
 
 
         val main_page_layout_post_icons = LinearLayout(this)
@@ -226,8 +167,17 @@ class MainActivity : AppCompatActivity() {
 
         scaleAnimation.interpolator = boundInterpolator
 
-        val ic_like = ToggleButton(this)
+//        ic_like.buttonTintList = resources.getColorStateList(R.color.button)
+//        ic_like.compoundDrawables.first().setTint(R.color.button)
+//        ic_like.backgroundTintList = ColorStateList.valueOf(R.color.button)
+//        ic_like.backgroundTintList = resources.getColorStateList(R.color.button)
+        ic_like.backgroundTintList = resources.getColorStateList(R.color.button, null)
+        ic_like.transitionName = "tb_like"
         ic_like.setBackgroundResource(R.drawable.main_page_sel_like)
+
+//        ic_like.highlightColor = R.color.image_view
+//        DrawableCompat.setTint(ic_like.buttonDrawable!!, ContextCompat.getColor(this,R.color.image_view))
+
         for (like in post.likes) {
             if(like.checkedUser.id == logInedUser.id) {
                 ic_like.isChecked = true
@@ -242,6 +192,8 @@ class MainActivity : AppCompatActivity() {
         ic_like.textOn = ""
         ic_like.textOff = ""
         ic_like.text = ""
+//        ic_like.setBackgroundColor(R.attr.colorImageView)
+//        ic_like.setBackgroundColor(R.color.image_view)
 
         // like button clicklistner
         ic_like.setOnCheckedChangeListener { compoundButton, isChecked ->
@@ -259,19 +211,37 @@ class MainActivity : AppCompatActivity() {
             compoundButton.startAnimation(scaleAnimation)
         }
 
-        val ic_comment = ImageView(this)
+
+        ic_comment.transitionName = "iv_comment"
         ic_comment.setImageResource(R.drawable.ic_comment)
         ic_comment.layoutParams = LinearLayout.LayoutParams(
             convertDpToPixel(50),
             convertDpToPixel(50)
         )
 
+//       click comment (to DetailActivity)
         ic_comment.setOnClickListener {
             // 디테일 페이지로 post 전송(댓글버튼 클릭)
 //            val intent_to_test = Intent(this, TestActivity::class.java)
 //            intent_to_test.putExtra("post", post)
 //            intent_to_test.putExtra("from", "ic_comment")
-//            startActivity(intent_to_test)
+//            intent_to_test.putExtra("content", post.content)
+
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                Pair.create(image_view_post, "iv_main_image"),
+                Pair.create(ic_like, "tb_like"),
+                Pair.create(ic_comment, "iv_comment"),
+                Pair.create(content, "tv_content"),
+            )
+//            startActivity(intent_to_test, options.toBundle())
+//            overridePendingTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out)
+//            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out, Color.TRANSPARENT)
+
+            val intentToDetail = Intent(this, DetailActivity::class.java)
+            startActivity(intentToDetail)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
         }
 
         main_page_layout_post_icons.addView(ic_like)
@@ -286,7 +256,8 @@ class MainActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.MATCH_PARENT
         )
 
-        val content = TextView(this)
+
+        content.transitionName = "tv_content"
         content.layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
@@ -301,10 +272,39 @@ class MainActivity : AppCompatActivity() {
         )
         entire_layout_params.bottomMargin = convertDpToPixel(50)
         entire_layout.layoutParams = entire_layout_params
+
+        main_page_layout_post_image.setOnClickListener {
+
+//          디테일 페이지로 post 전송(이미지 클릭)
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                Pair.create(image_view_post, "iv_main_image"),
+                Pair.create(ic_like, "tb_like"),
+                Pair.create(ic_comment, "iv_comment"),
+                Pair.create(content, "tv_content"),
+            )
+
+
+            // click image (to DetailActivity)
+//            val intent_to_test = Intent(this, TestDetailActivity::class.java)
+//            Toast.makeText(this, post.toString(), Toast.LENGTH_SHORT).show()
+//            intent_to_test.putExtra("post", post)
+//            intent_to_test.putExtra("from", "image")
+//            intent_to_test.putExtra("content", post.content)
+//
+//            startActivity(intent_to_test, options.toBundle())
+
+            // API version less than 33
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
+            // API version more than 33
+//            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out)
+        }
+
         entire_layout.addView(main_page_layout_post_image)
         entire_layout.addView(main_page_layout_post_icons)
         entire_layout.addView(main_page_layout_post_content)
 
-        return entire_layout*/
+        return entire_layout
     }
 }
