@@ -8,4 +8,7 @@
     <color name="box">#8F95F9</color>
     <color name="text_solid">#FEFFFE</color>    <!--TODO-->
     <color name="divider">#267D7D7D</color>
+    <color name="image_view">#2E2D2C</color>
+
+    <color name="button_pressed">#5032E8</color>
 </resources>

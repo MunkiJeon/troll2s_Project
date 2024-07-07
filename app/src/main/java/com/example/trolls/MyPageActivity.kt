@@ -33,110 +33,6 @@ class MyPageActivity : AppCompatActivity() {
      */
     private lateinit var userData: User
 
-    var jaeseon = User(
-        "yoo",
-        "1234",
-        "유재선",
-        "jaeseon's nickname",
-        "hi!!!!hello",
-        mutableListOf(),
-        mutableListOf(),
-        R.drawable.dummy_image03
-    )
-    var jiwon = User(
-        "shin",
-        "1234",
-        "신지원",
-        "jiwon's nickname",
-        "hi!!!!hello",
-        mutableListOf(),
-        mutableListOf(),
-        R.drawable.dummy_image02
-    )
-    var moonki = User(
-        "jeon",
-        "1234",
-        "전문기",
-        "moonki's nickname",
-        "hi!!!!hello",
-        mutableListOf(),
-        mutableListOf(),
-        R.drawable.dummy_image05
-    )
-    var rian = User(
-        "kim",
-        "1234",
-        "김리안",
-        "rian's nickname",
-        "hi!!!!hello",
-        mutableListOf(),
-        mutableListOf(),
-        R.drawable.dummy_image04
-    )
-    var seungmo = User(
-        "seong",
-        "1234",
-        "성승모",
-        "seungmo's nickname",
-        "hi!!!!hello",
-        mutableListOf(),
-        mutableListOf(),
-        R.drawable.dummy_image03
-    )
-
-    val logInedUser = jaeseon
-
-    val comment1_1 = Comment("댓글입니다1_1", jaeseon)
-    val comment1_2 = Comment("댓글입니다1_2", jaeseon)
-    val comment1_3 = Comment("댓글입니다1_3", jaeseon)
-    val comment2_1 = Comment("댓글입니다2_1", jiwon)
-    val comment2_2 = Comment("댓글입니다2_2", jiwon)
-    val comment2_3 = Comment("댓글입니다2_3", jiwon)
-    val comment3_1 = Comment("댓글입니다3_1", moonki)
-    val comment3_2 = Comment("댓글입니다3_2", moonki)
-    val comment3_3 = Comment("댓글입니다3_3", moonki)
-    val comment4_1 = Comment("댓글입니다4_1", seungmo)
-    val comment4_2 = Comment("댓글입니다4_2", seungmo)
-    val comment4_3 = Comment("댓글입니다4_3", seungmo)
-    val comment5_1 = Comment("댓글입니다5_1", rian)
-    val comment5_2 = Comment("댓글입니다5_2", rian)
-    val comment5_3 = Comment("댓글입니다5_3", rian)
-
-    //TODO: type miss match
-    val post_panni1 = Post(
-        1,
-        R.drawable.dummy_image03,
-        "빠니보틀 제목1",
-        "빠니보틀 본문1",
-        jaeseon,
-        comments = mutableListOf(),
-        likes = mutableListOf(Like(jiwon))
-    )
-    val post_panni2 = Post(
-        2, R.drawable.dummy_image04, "빠니보틀 제목2", "빠니보틀 본문2", jaeseon, comments = mutableListOf()
-    )
-    val post_kwack1 =
-        Post(3, R.drawable.dummy_image06, "곽튜브 제목1", "곽튜브 본문2", jaeseon, comments = mutableListOf())
-    val post_kwack2 =
-        Post(4, R.drawable.dummy_image07, "곽튜브 제목2", "곽튜브 본문2", jaeseon, comments = mutableListOf())
-
-
-    val like1_1 = Like(jaeseon)
-    val like1_2 = Like(jiwon)
-    val like1_3 = Like(moonki)
-    val like2_1 = Like(jaeseon)
-    val like2_2 = Like(jiwon)
-    val like2_3 = Like(moonki)
-    val like3_1 = Like(moonki)
-    val like3_2 = Like(seungmo)
-    val like3_3 = Like(rian)
-    val like4_1 = Like(seungmo)
-    val like4_2 = Like(rian)
-    val like4_3 = Like(moonki)
-    val like5_1 = Like(rian)
-    val like5_2 = Like(moonki)
-    val like5_3 = Like(jiwon)
-
     // Activity Result에 콜백 등록 (MainActivity.kt)
     private val getResultText = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -213,7 +109,7 @@ class MyPageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //메인화면에서 불러온 데이터 셋팅
-        userData = intent.getParcelableExtra("loginUser") ?: intent.getParcelableExtra("LIKE") ?: moonki
+        userData = intent.getParcelableExtra("loginUser") ?: intent.getParcelableExtra("LIKE") ?: throw Exception("유저 정보가 없습니다.")
 
 //        Log.d("PostSize", userData.myPosts.size.toString())
 //        Log.d("LikesSize", userData.myLikes.size.toString())

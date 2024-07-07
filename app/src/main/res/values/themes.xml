@@ -9,6 +9,9 @@
         <item name="colorBox">@color/box</item>
         <item name="colorTextInBox">@color/text_solid</item>
         <item name="colorDivider">@color/divider</item>
+        <item name="colorButtonPressed">@color/button_pressed</item>
+
+        <item name="colorImageView">@color/image_view</item>
 
         <item name="sizeTitleText">32sp</item>
         <item name="sizeSubtitleText">22sp</item>
