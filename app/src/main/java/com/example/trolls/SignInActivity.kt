@@ -65,12 +65,6 @@ class SignInActivity : AppCompatActivity() {
 
         }
 
-
-//        val it_singin = Intent(
-//            this, //메인화면엑티비티//::class.java)
-//            it_singin.putExtra("USERINFO", it_singin.text.toString())
-//                    startActivity (it_singin)
-
         singin_join_btn.setOnClickListener {
             val it_singin = Intent(this, SignUpActivity::class.java)
             startActivity(it_singin)
